@@ -4,7 +4,7 @@
 #define BALL_INIT_POS_X -232.0f
 #define BALL_INIT_POS_Y -384.0f
 
-#define BALL_LINE_SIZE_X 9
+#define BALL_LINE_SIZE_X 8
 #define BALL_LINE_SIZE_Y 12
 
 #define SCALE_X 4.0f

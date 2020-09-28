@@ -47,10 +47,15 @@ void Update() {
 		(float)Height * -0.5f, (float)Height * 0.5f,
 		-1, 1
 	);
-	if (Key->Press(VK_F5)) {
+	if (Key->Press(VK_F1)) {
 		SAFE_DELETE(scenes[0]);
 		scenes.clear();
 		scenes.push_back(new S01_GameScene(values));
+	}
+	if (Key->Press(VK_F2)) {
+		SAFE_DELETE(scenes[0]);
+		scenes.clear();
+		scenes.push_back(new S02_EditorScene(values));
 	}
 	for (Scene* scene : scenes)
 		scene->Update();

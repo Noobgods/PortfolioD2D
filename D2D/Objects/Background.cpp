@@ -10,6 +10,7 @@ Background::Background(Vector2 position, Vector2 scale)
 
 	// Stages
 	Sprite* background;
+
 	background = new Sprite(spriteFile1, shaderFile, 16, 16, 336, 240);
 	stages.push_back(background);
 
@@ -23,6 +24,7 @@ Background::Background(Vector2 position, Vector2 scale)
 
 	// StageWalls
 	Sprite* wall;
+
 	wall = new Sprite(spriteFile2, shaderFile, 1, 10, 161, 210);
 	stageWalls.push_back(wall);
 
