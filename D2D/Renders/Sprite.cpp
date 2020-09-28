@@ -25,6 +25,7 @@ void Sprite::Initialize(wstring textureFile, wstring shaderFile, float startX, f
 	this->textureFile = L"./_Textures/" + textureFile;
 
 	shader = new Shader(shaderFile);
+	pass = 0;
 
 	srv = Sprites::Load(this->textureFile);
 	shader->AsShaderResource("DiffuseMap")->SetResource(srv);
@@ -43,16 +44,12 @@ void Sprite::Initialize(wstring textureFile, wstring shaderFile, float startX, f
 	vertices[0].Position = D3DXVECTOR3(-0.5f, -0.5f, 0.0f);
 	vertices[1].Position = D3DXVECTOR3(-0.5f, +0.5f, 0.0f);
 	vertices[2].Position = D3DXVECTOR3(+0.5f, -0.5f, 0.0f);
-	vertices[3].Position = D3DXVECTOR3(+0.5f, -0.5f, 0.0f);
-	vertices[4].Position = D3DXVECTOR3(-0.5f, +0.5f, 0.0f);
-	vertices[5].Position = D3DXVECTOR3(+0.5f, +0.5f, 0.0f);
+	vertices[3].Position = D3DXVECTOR3(+0.5f, +0.5f, 0.0f);
 
 	vertices[0].Uv = D3DXVECTOR2(startX, endY);
 	vertices[1].Uv = D3DXVECTOR2(startX, startY);
 	vertices[2].Uv = D3DXVECTOR2(endX, endY);
-	vertices[3].Uv = D3DXVECTOR2(endX, endY);
-	vertices[4].Uv = D3DXVECTOR2(startX, startY);
-	vertices[5].Uv = D3DXVECTOR2(endX, startY);
+	vertices[3].Uv = D3DXVECTOR2(endX, startY);
 
 	float sizeX = (endX > 0) ? endX * (float)info.Width : (float)info.Width;
 	sizeX -= startX * (float)info.Width;
@@ -80,7 +77,7 @@ void Sprite::Initialize(wstring textureFile, wstring shaderFile, float startX, f
 		D3D11_BUFFER_DESC desc;
 		ZeroMemory(&desc, sizeof(D3D11_BUFFER_DESC));	// NULL로 초기화
 		desc.Usage = D3D11_USAGE_DEFAULT;	// 접근권한 DEFAULT(), DYNAMIC(CPU)
-		desc.ByteWidth = sizeof(Vertex) * 6;	// 크기
+		desc.ByteWidth = sizeof(Vertex) * 4;	// 크기
 		desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;	// 사용용도
 
 		D3D11_SUBRESOURCE_DATA data;
@@ -91,12 +88,32 @@ void Sprite::Initialize(wstring textureFile, wstring shaderFile, float startX, f
 		HRESULT hr = Device->CreateBuffer(&desc, &data, &vertexBuffer);
 		assert(SUCCEEDED(hr));
 	}
+
+	UINT indices[6] = { 0, 1, 2, 2, 1, 3 };
+	//Create IndexBuffer
+	{
+		D3D11_BUFFER_DESC desc;
+		ZeroMemory(&desc, sizeof(D3D11_BUFFER_DESC));
+		desc.Usage = D3D11_USAGE_IMMUTABLE;
+		desc.ByteWidth = sizeof(Vertex) * 6;
+		desc.BindFlags = D3D11_BIND_INDEX_BUFFER;
+
+		D3D11_SUBRESOURCE_DATA data;
+		ZeroMemory(&data, sizeof(D3D11_SUBRESOURCE_DATA));
+		data.pSysMem = indices;
+
+		HRESULT hr = Device->CreateBuffer(&desc, &data, &indexBuffer);
+		assert(SUCCEEDED(hr));
+	}
 }
 
 Sprite::~Sprite()
 {
 	SAFE_DELETE(shader);
 	SAFE_RELEASE(vertexBuffer);
+	SAFE_RELEASE(indexBuffer);
+
+	Sprites::Remove(textureFile);
 }
 
 void Sprite::Update(D3DXMATRIX & V, D3DXMATRIX & P)
@@ -112,8 +129,9 @@ void Sprite::Render()
 
 	DeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	DeviceContext->IASetVertexBuffers(0, 1, &vertexBuffer, &stride, &offset);
+	DeviceContext->IASetIndexBuffer(indexBuffer, DXGI_FORMAT_R32_UINT, 0);
 
-	shader->Draw(0, 0, 6);
+	shader->DrawIndexed(0, pass, 6);
 }
 
 void Sprite::Position(float x, float y)

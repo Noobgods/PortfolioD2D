@@ -45,7 +45,10 @@ private:
 
 private:
 	Shader* shader;
+	UINT pass;
+
 	ID3D11Buffer* vertexBuffer;
+	ID3D11Buffer* indexBuffer;
 
 	D3DXVECTOR2 position;
 	D3DXVECTOR2	scale;

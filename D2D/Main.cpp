@@ -3,6 +3,8 @@
 #include "Scenes/Scene.h"
 
 #include "Scenes/S00_MainScene.h"
+#include "Scenes/S01_GameScene.h"
+#include "Scenes/S02_EditorScene.h"
 
 SceneValues* values;
 vector<Scene*> scenes; 
@@ -13,7 +15,7 @@ void InitScene() {
 	values->MainCamera = new Camera();
 	D3DXMatrixIdentity(&values->Projection);	
 
-	scenes.push_back(new S00_MainScene(values));
+	scenes.push_back(new S01_GameScene(values));
 
 	// Sound
 	Audio->AddSound("BGM", "./_Sounds/Puzzle Bobble - Theme.mp3",true);
@@ -48,7 +50,7 @@ void Update() {
 	if (Key->Press(VK_F5)) {
 		SAFE_DELETE(scenes[0]);
 		scenes.clear();
-		scenes.push_back(new S00_MainScene(values));
+		scenes.push_back(new S01_GameScene(values));
 	}
 	for (Scene* scene : scenes)
 		scene->Update();

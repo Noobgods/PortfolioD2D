@@ -93,3 +93,5 @@ extern ID3D11RenderTargetView* RTV;	// 실제 도화지 RTV -> HDC 의 역할
 
 extern Keyboard* Key;
 extern AudioSystem* Audio;
+
+extern float rAccumlationTime;
