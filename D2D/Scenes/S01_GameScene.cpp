@@ -20,7 +20,7 @@ S01_GameScene::S01_GameScene(SceneValues * values)
 	, uiStage(0)
 	, uiExplodeCount(0)
 	, uiCeilingLine(0)
-	, uiOverLine(BALL_LINE_SIZE_Y - 1)
+	, uiOverLine(BUBBLE_LINE_SIZE_Y - 1)
 	, fBubbleShake(80.0f)
 	, fBubbleDistance(0.0f)
 	, fShakeSpeed(80.0f)
@@ -73,8 +73,8 @@ S01_GameScene::~S01_GameScene()
 	if (shootBubble != NULL)
 		SAFE_DELETE(shootBubble);
 
-	for (UINT i = 0; i < BALL_LINE_SIZE_Y; i++) {
-		for (UINT j = 0; j < BALL_LINE_SIZE_X; j++) {
+	for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y; i++) {
+		for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
 			SAFE_DELETE(bubbles[i][j]);
 		}
 	}
@@ -89,14 +89,14 @@ void S01_GameScene::Update()
 	//// State::READY
 	if (stageState == State::READY) {
 		// Bubbles Line Position Set / Bubbles Set
-		for (UINT i = 0; i < BALL_LINE_SIZE_Y; i++) {
+		for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y; i++) {
 			Vector2 position = Vector2(-228.0f, 324.0f);
-			if (i % 2 == 1) position.x += BALL_SIZE_X / 2;
-			position.y -= (i * BALL_SIZE_Y);
+			if (i % 2 == 1) position.x += BUBBLE_SIZE_X / 2;
+			position.y -= (i * BUBBLE_SIZE_Y);
 
-			for (UINT j = 0; j < BALL_LINE_SIZE_X; j++) {
+			for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
 				bubbleLine[i][j] = position;
-				position.x += BALL_SIZE_X;
+				position.x += BUBBLE_SIZE_X;
 			}
 		}
 		// Stage Set
@@ -104,8 +104,8 @@ void S01_GameScene::Update()
 			ceiling->Stage(1);
 			background->Stage(1);
 		}
-		for (UINT i = 0; i < BALL_LINE_SIZE_Y; i++) {
-			for (UINT j = 0; j < BALL_LINE_SIZE_X; j++) {
+		for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y; i++) {
+			for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
 				if (stage[uiStage][i][j] != 0) {
 					bubbles[i][j] = new Bubble(bubbleLine[i][j], Vector2(SCALE_X, SCALE_Y), stage[uiStage][i][j]);
 					bRemainsColor[bubbles[i][j]->GetBubbleColor()]++;
@@ -128,7 +128,7 @@ void S01_GameScene::Update()
 		fBubbleRotation = 0.0f;
 		fStageTime = 0.0f;
 		fCeilingY = CEILING_Y;
-		uiOverLine = BALL_LINE_SIZE_Y - 1;
+		uiOverLine = BUBBLE_LINE_SIZE_Y - 1;
 		uiCeilingLine = 0;
 
 		Audio->Play("BGM");
@@ -206,8 +206,8 @@ void S01_GameScene::Update()
 		}
 
 		/// 충돌처리, Bubbles 업데이트
-		for (UINT i = 0; i < BALL_LINE_SIZE_Y; i++) {
-			for (UINT j = 0; j < BALL_LINE_SIZE_X; j++) {
+		for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y; i++) {
+			for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
 				if (bubbles[i][j] != NULL) {
 					if (shootBubble != NULL && Collider::Cbb(shootBubble->getCollider()->World(), bubbles[i][j]->getCollider()->World())) {
 						Audio->Play("BUMP");
@@ -238,10 +238,10 @@ void S01_GameScene::Update()
 			stageState = State::WIN;
 		}
 		// 패배
-		for (UINT j = 0; j < BALL_LINE_SIZE_X; j++) {
+		for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
 			if (bubbles[uiOverLine][j] != NULL) {
-				for (UINT i = 0; i < BALL_LINE_SIZE_Y; i++) {
-					for (UINT j = 0; j < BALL_LINE_SIZE_X; j++) {
+				for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y; i++) {
+					for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
 						if (bubbles[i][j] != NULL) {
 							bubbles[i][j]->BubbleState(BState::GAMEOVER);
 						}
@@ -332,8 +332,8 @@ void S01_GameScene::Update()
 	for (UINT i = 1; i <= 8; i++) {
 		bRemainsColor[i] = 0;
 	}
-	for (UINT i = 0; i < BALL_LINE_SIZE_Y; i++) {
-		for (UINT j = 0; j < BALL_LINE_SIZE_X; j++) {
+	for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y; i++) {
+		for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
 			if (bubbles[i][j] != NULL) {
 				bubbles[i][j]->Update(V, P);
 				bRemainsColor[bubbles[i][j]->GetBubbleColor()]++;
@@ -357,8 +357,8 @@ void S01_GameScene::Render()
 	for (Monster* monster : deleteMonster)
 		monster->Render();
 
-	for (UINT i = 0; i < BALL_LINE_SIZE_Y; i++) {
-		for (UINT j = 0; j < BALL_LINE_SIZE_X; j++) {
+	for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y; i++) {
+		for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
 			if (bubbles[i][j] != NULL)
 				bubbles[i][j]->Render();
 		}
@@ -392,8 +392,8 @@ void S01_GameScene::CeilingDown()
 {
 	/// Bubbles 흔들기
 	if (fStageTime >= 15) {
-		for (UINT i = 0; i < BALL_LINE_SIZE_Y; i++) {
-			for (UINT j = 0; j < BALL_LINE_SIZE_X; j++) {
+		for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y; i++) {
+			for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
 				if (bubbles[i][j] != NULL) {
 					bubbles[i][j]->Position(
 						bubbles[i][j]->Position().x + fBubbleShake * Time::Delta(),
@@ -434,8 +434,8 @@ void S01_GameScene::CeilingDown()
 		ceiling->Position(ceiling->Position().x, ceiling->Position().y - 28.0f);
 		ceiling->FrameNumber(++uiCeilingLine);
 
-		for (UINT i = 0; i < BALL_LINE_SIZE_Y; i++) {
-			for (UINT j = 0; j < BALL_LINE_SIZE_X; j++) {
+		for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y; i++) {
+			for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
 				bubbleLine[i][j].y -= 56;
 				// Bubbles 내리기
 				if (bubbles[i][j] != NULL) {
@@ -565,14 +565,14 @@ void S01_GameScene::BubbleExplodeCheck(UINT x, UINT y)
 void S01_GameScene::BubbleExplodeDelete()
 {
 	if (uiExplodeCount < 3) {
-		ZeroMemory(bCheckBubbles, sizeof(bool) * BALL_LINE_SIZE_X * BALL_LINE_SIZE_Y);
+		ZeroMemory(bCheckBubbles, sizeof(bool) * BUBBLE_LINE_SIZE_X * BUBBLE_LINE_SIZE_Y);
 		uiExplodeCount = 0;
 		return;
 	}
 
 	Audio->Play("PONG");
-	for (UINT i = 0; i < BALL_LINE_SIZE_Y; i++) {
-		for (UINT j = 0; j < BALL_LINE_SIZE_X; j++) {
+	for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y; i++) {
+		for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
 			if (bCheckBubbles[i][j]) {
 				// Monster Drop
 				temp1 = bubbles[i][j]->Position().x;
@@ -625,8 +625,8 @@ void S01_GameScene::BubbleAirCheck(UINT x, UINT y)
 void S01_GameScene::BubbleAirDelete()
 {
 	if (stageState == State::GAME) {
-		for (UINT i = 0; i < BALL_LINE_SIZE_Y; i++) {
-			for (UINT j = 0; j < BALL_LINE_SIZE_X; j++) {
+		for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y; i++) {
+			for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
 				if (!bCheckAirBubbles[i][j] && bubbles[i][j] != NULL) {
 					// state -> InAir
 					bubbles[i][j]->BubbleState(BState::INAIR);
@@ -637,7 +637,7 @@ void S01_GameScene::BubbleAirDelete()
 				}
 			}
 		}
-		ZeroMemory(bCheckAirBubbles, sizeof(bool) * BALL_LINE_SIZE_X * BALL_LINE_SIZE_Y);
+		ZeroMemory(bCheckAirBubbles, sizeof(bool) * BUBBLE_LINE_SIZE_X * BUBBLE_LINE_SIZE_Y);
 	}
 }
 

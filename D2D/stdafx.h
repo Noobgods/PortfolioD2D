@@ -69,12 +69,19 @@ typedef D3DXQUATERNION Quaternion;
 
 #include "Utilities/Math.h"
 #include "Utilities/String.h"
+#include "Utilities/BinaryFile.h"
 
-#define BALL_SIZE_X	64
-#define BALL_SIZE_Y 52
+#define BUBBLE_SIZE_X	64
+#define BUBBLE_SIZE_Y 52
 
 #define LIMIT_ANGLE 80.0f
 #define LAUNCHER_ANGLE 60.0f
+
+#define SCALE_X 4.0f
+#define SCALE_Y 4.0f
+
+#define BUBBLE_LINE_SIZE_X 8
+#define BUBBLE_LINE_SIZE_Y 12
 
 //Extern Global
 extern UINT Width;

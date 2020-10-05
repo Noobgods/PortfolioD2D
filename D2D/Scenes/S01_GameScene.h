@@ -4,15 +4,7 @@
 #define BALL_INIT_POS_X -232.0f
 #define BALL_INIT_POS_Y -384.0f
 
-#define BALL_LINE_SIZE_X 8
-#define BALL_LINE_SIZE_Y 12
-
-#define SCALE_X 4.0f
-#define SCALE_Y 4.0f
-
 #define CEILING_Y 330.0f
-#define MAX_STAGE 4
-
 
 enum class State {
 	READY = 0, GO, GAME, WIN, LOSE, NEXTSTAGE
@@ -52,17 +44,17 @@ private:
 	class LaunchingPad* launchingPad;
 	class Ceiling* ceiling;
 
-	class Bubble* bubbles[BALL_LINE_SIZE_Y][BALL_LINE_SIZE_X];
+	class Bubble* bubbles[BUBBLE_LINE_SIZE_Y][BUBBLE_LINE_SIZE_X];
 	class Bubble* readyBubble;
 	class Bubble* waitBubble;
 	class Bubble* shootBubble;
 	vector<class Bubble*> deleteBubbles;
 	vector<class Monster*> deleteMonster;
 
-	Vector2 bubbleLine[BALL_LINE_SIZE_Y][BALL_LINE_SIZE_X];
+	Vector2 bubbleLine[BUBBLE_LINE_SIZE_Y][BUBBLE_LINE_SIZE_X];
 
-	bool bCheckBubbles[BALL_LINE_SIZE_Y][BALL_LINE_SIZE_X];
-	bool bCheckAirBubbles[BALL_LINE_SIZE_Y][BALL_LINE_SIZE_X];
+	bool bCheckBubbles[BUBBLE_LINE_SIZE_Y][BUBBLE_LINE_SIZE_X];
+	bool bCheckAirBubbles[BUBBLE_LINE_SIZE_Y][BUBBLE_LINE_SIZE_X];
 	State stageState;
 
 	UINT bRemainsColor[9];

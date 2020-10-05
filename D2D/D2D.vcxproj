@@ -137,10 +137,12 @@
     <ClInclude Include="Objects\LaunchDragon.h" />
     <ClInclude Include="Objects\LaunchingPad.h" />
     <ClInclude Include="Objects\Monster.h" />
+    <ClInclude Include="Objects\Rect.h" />
     <ClInclude Include="Renders\Animation.h" />
     <ClInclude Include="Renders\Clip.h" />
     <ClInclude Include="Renders\Shader.h" />
     <ClInclude Include="Renders\Sprite.h" />
+    <ClInclude Include="Scenes\FileManager.h" />
     <ClInclude Include="Scenes\S00_MainScene.h" />
     <ClInclude Include="Scenes\S01_GameScene.h" />
     <ClInclude Include="Scenes\S02_EditorScene.h" />
@@ -153,6 +155,7 @@
     <ClInclude Include="Systems\Keyboard.h" />
     <ClInclude Include="Systems\Mouse.h" />
     <ClInclude Include="Systems\Time.h" />
+    <ClInclude Include="Utilities\BinaryFile.h" />
     <ClInclude Include="Utilities\Math.h" />
     <ClInclude Include="Utilities\String.h" />
     <ClInclude Include="Viewer\Camera.h" />
@@ -167,10 +170,12 @@
     <ClCompile Include="Objects\LaunchDragon.cpp" />
     <ClCompile Include="Objects\LaunchingPad.cpp" />
     <ClCompile Include="Objects\Monster.cpp" />
+    <ClCompile Include="Objects\Rect.cpp" />
     <ClCompile Include="Renders\Animation.cpp" />
     <ClCompile Include="Renders\Clip.cpp" />
     <ClCompile Include="Renders\Shader.cpp" />
     <ClCompile Include="Renders\Sprite.cpp" />
+    <ClCompile Include="Scenes\FileManager.cpp" />
     <ClCompile Include="Scenes\S00_MainScene.cpp" />
     <ClCompile Include="Scenes\S01_GameScene.cpp" />
     <ClCompile Include="Scenes\S02_EditorScene.cpp" />
@@ -184,6 +189,7 @@
     <ClCompile Include="Systems\Keyboard.cpp" />
     <ClCompile Include="Systems\Mouse.cpp" />
     <ClCompile Include="Systems\Time.cpp" />
+    <ClCompile Include="Utilities\BinaryFile.cpp" />
     <ClCompile Include="Utilities\Math.cpp" />
     <ClCompile Include="Utilities\String.cpp" />
     <ClCompile Include="Viewer\Camera.cpp" />

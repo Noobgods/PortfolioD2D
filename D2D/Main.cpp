@@ -15,7 +15,7 @@ void InitScene() {
 	values->MainCamera = new Camera();
 	D3DXMatrixIdentity(&values->Projection);	
 
-	scenes.push_back(new S01_GameScene(values));
+	scenes.push_back(new S02_EditorScene(values));
 
 	// Sound
 	Audio->AddSound("BGM", "./_Sounds/Puzzle Bobble - Theme.mp3",true);

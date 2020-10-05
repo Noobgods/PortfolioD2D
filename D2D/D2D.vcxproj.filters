@@ -80,6 +80,15 @@
     <ClInclude Include="Scenes\S02_EditorScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="Objects\Rect.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\FileManager.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\BinaryFile.h">
+      <Filter>Utilites</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -155,6 +164,15 @@
     </ClCompile>
     <ClCompile Include="Scenes\S02_EditorScene.cpp">
       <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Rect.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\FileManager.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\BinaryFile.cpp">
+      <Filter>Utilites</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

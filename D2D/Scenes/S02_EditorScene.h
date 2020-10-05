@@ -1,9 +1,6 @@
 #pragma once
 #include "Scene.h"
 
-#define BALL_LINE_SIZE_X 9
-#define BALL_LINE_SIZE_Y 12
-
 class S02_EditorScene : public Scene {
 public:
 	S02_EditorScene(SceneValues* values);
@@ -13,5 +10,6 @@ public:
 	void Render() override;
 
 private:
-
+	class Background* background;
+	Vector2 boxLine[BUBBLE_LINE_SIZE_Y][BUBBLE_LINE_SIZE_X];
 };

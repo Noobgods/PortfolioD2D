@@ -1,6 +1,6 @@
 #pragma once
 
-// Ball State
+// Bubble State
 enum class BState {
 	SPAWN =0, NEXT, MOVEREADY, READY, SHOT, IDLE, BURST, INAIR, DEL, GAMEOVER
 };

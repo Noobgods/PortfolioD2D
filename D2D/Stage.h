@@ -1,6 +1,8 @@
 #pragma once
 
-UINT stage[MAX_STAGE][BALL_LINE_SIZE_Y][BALL_LINE_SIZE_X] = { {
+#define MAX_STAGE 4
+
+UINT stage[MAX_STAGE][BUBBLE_LINE_SIZE_Y][BUBBLE_LINE_SIZE_X] = { {
 	{3,3,2,2,1,1,4,4},
 	{3,3,2,2,1,1,4,0},
 	{1,1,4,4,3,3,2,2},
