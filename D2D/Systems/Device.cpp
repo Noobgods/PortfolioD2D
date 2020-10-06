@@ -30,6 +30,7 @@ ID3D11DeviceContext* DeviceContext = NULL;
 ID3D11RenderTargetView* RTV = NULL;
 
 Keyboard* Key = NULL;
+CMouse* Mouse = NULL;
 AudioSystem* Audio = NULL;
 
 void InitWindow(HINSTANCE hInstance, int nCmdShow) {
@@ -149,6 +150,7 @@ WPARAM Running() {
 	DirectWrite::Create();
 
 	Key = new Keyboard();
+	Mouse = new CMouse(Hwnd);
 	Audio = new AudioSystem();
 
 	Time::Create();
@@ -176,6 +178,7 @@ WPARAM Running() {
 	
 	// Delete Singleton
 	SAFE_DELETE(Key);
+	SAFE_DELETE(Mouse);
 	SAFE_DELETE(Audio);
 
 	Time::Delete();
@@ -188,6 +191,9 @@ WPARAM Running() {
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 	if (ImGui::WndProc((UINT*)Hwnd, msg, wParam, lParam))
 		return true;
+
+	if (Mouse != NULL)
+		Mouse->WndProc(msg, wParam, lParam);
 
 	switch (msg) {
 	case WM_SIZE: {

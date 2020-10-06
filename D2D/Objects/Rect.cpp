@@ -1,26 +1,24 @@
 #include "stdafx.h"
 #include "Rect.h"
 
-Rect::Rect(wstring shaderFile)
+Rect::Rect()
 	: position(0, 0), scale(1, 1), color(1, 1, 1, 1)
 	, pass(0)
 {
-	Initialize(shaderFile);
+	Initialize();
 
 }
 
-Rect::Rect(wstring shaderFile, D3DXVECTOR2 position, D3DXVECTOR2 scale, D3DXCOLOR color)
+Rect::Rect(D3DXVECTOR2 position, D3DXVECTOR2 scale, D3DXCOLOR color)
 	:position(position), scale(scale), color(color)
 	, pass(0)
 {
-	Initialize(shaderFile);
-
-	Color(color);
+	Initialize();
 }
 
-void Rect::Initialize(wstring shaderFile)
+void Rect::Initialize()
 {
-	shader = new Shader(shaderFile);
+	shader = new Shader(L"Rect.fx");
 	collider = new Collider();
 
 	CreateBuffer();

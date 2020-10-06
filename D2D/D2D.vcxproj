@@ -157,6 +157,7 @@
     <ClInclude Include="Systems\Time.h" />
     <ClInclude Include="Utilities\BinaryFile.h" />
     <ClInclude Include="Utilities\Math.h" />
+    <ClInclude Include="Utilities\Path.h" />
     <ClInclude Include="Utilities\String.h" />
     <ClInclude Include="Viewer\Camera.h" />
   </ItemGroup>
@@ -191,6 +192,7 @@
     <ClCompile Include="Systems\Time.cpp" />
     <ClCompile Include="Utilities\BinaryFile.cpp" />
     <ClCompile Include="Utilities\Math.cpp" />
+    <ClCompile Include="Utilities\Path.cpp" />
     <ClCompile Include="Utilities\String.cpp" />
     <ClCompile Include="Viewer\Camera.cpp" />
   </ItemGroup>
@@ -201,6 +203,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="_Shaders\Bounding.fx">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="_Shaders\Rect.fx">
       <FileType>Document</FileType>
     </None>
   </ItemGroup>

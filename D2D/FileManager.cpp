@@ -21,5 +21,6 @@ void FileManager::SetMarker(vector<Vector2>& v)
 
 vector<Vector2>& FileManager::GetBubbles()
 {
+	int n = 0;;;;
 	// TODO: 여기에 반환 구문을 삽입합니다.
 }

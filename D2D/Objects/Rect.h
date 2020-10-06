@@ -3,8 +3,8 @@
 class Rect
 {
 public:
-	Rect(wstring shaderFile);
-	Rect(wstring shaderFile, D3DXVECTOR2 position, D3DXVECTOR2 scale, D3DXCOLOR color = D3DXCOLOR(1, 1, 1, 1));
+	Rect();
+	Rect(D3DXVECTOR2 position, D3DXVECTOR2 scale, D3DXCOLOR color = D3DXCOLOR(1, 1, 1, 1));
 	virtual ~Rect();
 
 	virtual void Update(Matrix& V, Matrix& P);
@@ -12,7 +12,7 @@ public:
 
 private:
 	void CreateBuffer();
-	void Initialize(wstring shaderFile);
+	void Initialize();
 
 public:
 	void Position(float x, float y);
@@ -24,6 +24,10 @@ public:
 	void Scale(D3DXVECTOR2& vec);
 	void Scale(D3DXVECTOR2&& vec);
 	D3DXVECTOR2 Scale() { return scale; }
+
+	void Color(float r, float g, float b, float a = 1.0f);
+	void Color(D3DXCOLOR& vec);
+	D3DXCOLOR Color() { return color; }
 
 	void Pass(UINT val) { pass = val; }
 

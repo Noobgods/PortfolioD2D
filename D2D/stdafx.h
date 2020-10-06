@@ -57,6 +57,7 @@ typedef D3DXQUATERNION Quaternion;
 //FrameWork
 #include "Systems/Time.h"
 #include "Systems/Keyboard.h"
+#include "Systems/Mouse.h"
 #include "Systems/DirectWrite.h"
 #include "Systems/AudioSystem.h"
 
@@ -66,10 +67,12 @@ typedef D3DXQUATERNION Quaternion;
 #include "Renders/Animation.h"
 
 #include "Collider/Collider.h"
+#include "Objects/Rect.h"
 
 #include "Utilities/Math.h"
 #include "Utilities/String.h"
 #include "Utilities/BinaryFile.h"
+#include "Utilities/Path.h"
 
 #define BUBBLE_SIZE_X	64
 #define BUBBLE_SIZE_Y 52
@@ -99,6 +102,7 @@ extern ID3D11DeviceContext* DeviceContext;
 extern ID3D11RenderTargetView* RTV;	// 실제 도화지 RTV -> HDC 의 역할
 
 extern Keyboard* Key;
+extern CMouse* Mouse;
 extern AudioSystem* Audio;
 
 extern float rAccumlationTime;

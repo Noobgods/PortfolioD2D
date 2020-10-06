@@ -12,4 +12,5 @@ public:
 private:
 	class Background* background;
 	Vector2 boxLine[BUBBLE_LINE_SIZE_Y][BUBBLE_LINE_SIZE_X];
+	Rect* bubbleBox[BUBBLE_LINE_SIZE_Y][BUBBLE_LINE_SIZE_X];
 };
