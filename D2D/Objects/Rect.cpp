@@ -2,7 +2,7 @@
 #include "Rect.h"
 
 Rect::Rect()
-	: position(0, 0), scale(1, 1), color(1, 1, 1, 1)
+	: position(0, 0), scale(1, 1), color(1, 1, 1, 0)
 	, pass(0)
 {
 	Initialize();
@@ -14,6 +14,8 @@ Rect::Rect(D3DXVECTOR2 position, D3DXVECTOR2 scale, D3DXCOLOR color)
 	, pass(0)
 {
 	Initialize();
+
+	Color(color);
 }
 
 void Rect::Initialize()
@@ -148,4 +150,21 @@ void Rect::Scale(D3DXVECTOR2 & vec)
 void Rect::Scale(D3DXVECTOR2 && vec)
 {
 	scale = vec;
+}
+
+void Rect::Color(float r, float g, float b, float a)
+{
+	Color(D3DXCOLOR(r, g, b, a));
+}
+
+void Rect::Color(D3DXCOLOR & vec)
+{
+	Color(std::move(vec));
+}
+
+void Rect::Color(D3DXCOLOR && vec)
+{
+	color = vec;
+
+	sColor->SetFloatVector(color);
 }

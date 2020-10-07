@@ -4,7 +4,7 @@ class Rect
 {
 public:
 	Rect();
-	Rect(D3DXVECTOR2 position, D3DXVECTOR2 scale, D3DXCOLOR color = D3DXCOLOR(1, 1, 1, 1));
+	Rect(D3DXVECTOR2 position, D3DXVECTOR2 scale, D3DXCOLOR color = D3DXCOLOR(1, 1, 1, 0));
 	virtual ~Rect();
 
 	virtual void Update(Matrix& V, Matrix& P);
@@ -27,6 +27,7 @@ public:
 
 	void Color(float r, float g, float b, float a = 1.0f);
 	void Color(D3DXCOLOR& vec);
+	void Color(D3DXCOLOR&& vec);
 	D3DXCOLOR Color() { return color; }
 
 	void Pass(UINT val) { pass = val; }

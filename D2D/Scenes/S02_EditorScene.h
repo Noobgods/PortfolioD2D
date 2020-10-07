@@ -10,7 +10,15 @@ public:
 	void Render() override;
 
 private:
+	void EditBubble();
+	void RenderImGui();
+private:
 	class Background* background;
+
+	Vector2 mouse;
 	Vector2 boxLine[BUBBLE_LINE_SIZE_Y][BUBBLE_LINE_SIZE_X];
 	Rect* bubbleBox[BUBBLE_LINE_SIZE_Y][BUBBLE_LINE_SIZE_X];
+
+	int bubbleColor;
+
 };

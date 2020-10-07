@@ -48,6 +48,18 @@ using namespace std;
 #define SAFE_DELETE_ARRAY(p) { if(p) {delete[] (p); (p) = NULL;}}
 #define SAFE_RELEASE(p) { if(p) {(p)->Release(); (p) = NULL;}}
 
+#define GENERATE_MOUSE_UNPROJECT(out) \
+out = Mouse->Position(); \
+out.x = ((out.x / Width) * 2.0f) - 1.0f; \
+out.y = (((out.y / Height) * 2.0f) - 1.0f) * -1.0f; \
+\
+Matrix world; \
+D3DXMatrixIdentity(&world); \
+Matrix wvp = world * V * P; \
+\
+D3DXMatrixInverse(&wvp, NULL, &wvp); \
+D3DXVec2TransformCoord(&out, &out, &wvp);
+
 typedef D3DXVECTOR3 Vector3;
 typedef D3DXVECTOR2 Vector2;
 typedef D3DXMATRIX Matrix;
