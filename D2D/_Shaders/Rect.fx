@@ -6,7 +6,7 @@ cbuffer CB_PerFrame
 
 matrix World;
 
-float4 Color = float4(1, 1, 1, 1);
+float4 Color = float4(1, 1, 1, 0);
 
 //-----------------------------------------------------------------------------
 //Types

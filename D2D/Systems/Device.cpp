@@ -168,6 +168,7 @@ WPARAM Running() {
 		else {
 			Time::Get()->Update();
 			Update();
+			Mouse->Update();
 			Audio->Update();
 			ImGui::Update();
 			Render();

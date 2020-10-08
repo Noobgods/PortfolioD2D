@@ -18,7 +18,9 @@ private:
 	Vector2 mouse;
 	Vector2 boxLine[BUBBLE_LINE_SIZE_Y][BUBBLE_LINE_SIZE_X];
 	Rect* bubbleBox[BUBBLE_LINE_SIZE_Y][BUBBLE_LINE_SIZE_X];
+	UINT bubbles[BUBBLE_LINE_SIZE_Y][BUBBLE_LINE_SIZE_X];
 
+	UINT stage;
 	int bubbleColor;
 
 };

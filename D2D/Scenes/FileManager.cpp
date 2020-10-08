@@ -2,7 +2,7 @@
 #include "Filemanager.h"
 
 
-UINT FileManager::stageBubbles[BUBBLE_LINE_SIZE_Y][BUBBLE_LINE_SIZE_X];
+UINT FileManager::stageBubbles[MAX_STAGE][BUBBLE_LINE_SIZE_Y][BUBBLE_LINE_SIZE_X];
 
 void FileManager::Save(wstring fileName)
 {
@@ -14,9 +14,11 @@ void FileManager::Save(wstring fileName)
 		string str = String::ToString(fileName);
 		w->Open(fileName);
 
+		w->UInt(stages);
+		for (int s = 0; s < stages; s++)
 		for (int i = 0; i < BUBBLE_LINE_SIZE_Y; i++) {
 			for (int j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
-				w->UInt(stageBubbles[i][j]);
+				w->UInt(stageBubbles[s][i][j]);
 			}
 		}
 
@@ -39,10 +41,12 @@ void FileManager::Load(wstring fileName)
 		assert(false);
 
 	memset(stageBubbles, 0, sizeof(stageBubbles));
+	stages = r->UInt();
 
+	for(int s= 0; s<stages; s++)
 	for (int i = 0; i < BUBBLE_LINE_SIZE_Y; i++) {
 		for (int j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
-			stageBubbles[i][j] = r->UInt();
+			stageBubbles[s][i][j] = r->UInt();
 		}
 	}
 
@@ -50,7 +54,16 @@ void FileManager::Load(wstring fileName)
 	SAFE_DELETE(r);
 }
 
-void* FileManager::GetBubbles()
+void FileManager::SetBubbles(UINT(* bubbles)[BUBBLE_LINE_SIZE_X], UINT stage)
+{
+	for (int i = 0; i < BUBBLE_LINE_SIZE_Y; i++) {
+		for (int j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
+			stageBubbles[stage][i][j] = bubbles[i][j];
+		}
+	}
+}
+
+void* FileManager::GetBubbles(int stage)
 {
 	return stageBubbles;
 }

@@ -11,7 +11,7 @@ public:
 	void World(const D3DXMATRIX& world) { this->world = world; }
 	D3DXMATRIX World() { return world; }
 
-	static bool Aabb(D3DXMATRIX& world, D3DXVECTOR2& position);
+	static bool Aabb(D3DXMATRIX world, D3DXVECTOR2 position);
 	static bool Aabb(D3DXMATRIX world1, D3DXMATRIX world2);
 	static bool Cbb(D3DXMATRIX world1, D3DXMATRIX world2);
 

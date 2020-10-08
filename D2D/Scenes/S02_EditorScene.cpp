@@ -2,9 +2,11 @@
 #include "S02_EditorScene.h"
 
 #include "Objects/Background.h"
+#include "FileManager.h"
 
 S02_EditorScene::S02_EditorScene(SceneValues * values)
 	: Scene(values)
+	, stage(0)
 {
 	background = new Background(Vector2(0, 0), Vector2(SCALE_X, SCALE_Y));
 	
@@ -24,8 +26,10 @@ S02_EditorScene::S02_EditorScene(SceneValues * values)
 	for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y-1; i++) {
 		for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
 			if (i % 2 == 1 && j == BUBBLE_LINE_SIZE_X - 1);
-			else
+			else {
 				bubbleBox[i][j] = new Rect(boxLine[i][j], Vector2(BUBBLE_SIZE_X, BUBBLE_SIZE_Y));
+				bubbles[i][j] = 0;
+			}
 		}
 	}
 }
@@ -65,8 +69,48 @@ void S02_EditorScene::Render()
 	for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y-1; i++) {
 		for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
 			if (i % 2 == 1 && j == BUBBLE_LINE_SIZE_X - 1);
-			else
-			bubbleBox[i][j]->Render();
+			else {
+				switch (bubbles[i][j]) {
+				case 0:
+					bubbleBox[i][j]->Color(0, 0, 0, 0);
+					break;
+					//파랑
+				case 1:
+					bubbleBox[i][j]->Color(0, 0.2, 0.9, 1);
+					break;
+					//노랑
+				case 2:
+					bubbleBox[i][j]->Color(0.9, 0.8, 0, 1);
+					break;
+					//빨강
+				case 3:
+					bubbleBox[i][j]->Color(0.9, 0.1, 0, 1);
+					break;
+					//초록
+				case 4:
+					bubbleBox[i][j]->Color(0.0, 0.7, 0, 1);
+					break;
+					//보라
+				case 5:
+					bubbleBox[i][j]->Color(0.3, 0.1, 0.6, 1);
+					break;
+					//주황
+				case 6:
+					bubbleBox[i][j]->Color(0.3, 0.1, 0.6, 1);
+					break;
+					//검정
+				case 7:
+					bubbleBox[i][j]->Color(0.1, 0.1, 0.1, 1);
+					break;
+					//하양
+				case 8:
+					bubbleBox[i][j]->Color(0.5, 0.5, 0.6, 1);
+					break;
+				default:
+					break;
+				}
+				bubbleBox[i][j]->Render();
+			}
 		}
 	}
 	
@@ -78,24 +122,14 @@ void S02_EditorScene::EditBubble() {
 		return;
 
 	// 클릭시 버블 배치
-	if (Mouse->Down(0)) {
+	if (Mouse->Down(0)){
 		for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y - 1; i++) {
 			for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
 				if (i % 2 == 1 && j == BUBBLE_LINE_SIZE_X - 1);
 				else {
-					if (Collider::Aabb(bubbleBox[i][j]->World(), mouse)) {
+					if (Collider::Aabb(bubbleBox[i][j]->GetCollider()->World(), mouse)) {
 						// 색설정
-						switch (bubbleColor) {
-						case 1:
-							bubbleBox[i][j]->Color(0, 0.2, 0.9, 1);
-							break;
-						case 2:
-							bubbleBox[i][j]->Color(0.9, 0.8, 0, 1);
-							break;
-
-						default:
-							
-						}
+						bubbles[i][j] = bubbleColor;
 					}
 				}
 			}
@@ -104,6 +138,26 @@ void S02_EditorScene::EditBubble() {
 }
 void S02_EditorScene::RenderImGui() {
 
-	ImGui::Combo("BubbleColor", &bubbleColor, "None\0Blue\0Red\0Green\0Purple\0Orange\0Black\0White");
-	
+	ImGui::Combo("BubbleColor", &bubbleColor, "None\0Blue\0Yellow\0Red\0Green\0Purple\0Orange\0Black\0White");
+
+	ImGui::DragInt("StageNumber", stage)
+	// Save Bubbles
+	if (ImGui::Button("SaveStage")) {
+		FileManager::SetBubbles(bubbles);
+		FileManager::Save(L"CustomStage.bin");
+	}
+	ImGui::SameLine();
+
+	// Load Bubbles
+	if (ImGui::Button("LoadStage")) {
+		FileManager::Load(L"CustomStage.bin");
+		int(* tempBubbles)[BUBBLE_LINE_SIZE_X] = (int(*)[BUBBLE_LINE_SIZE_X])FileManager::GetBubbles();
+		for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y - 1; i++) {
+			for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
+				bubbles[i][j] = tempBubbles[i][j];
+			}
+		}
+	}
+
+	EditBubble();
 }

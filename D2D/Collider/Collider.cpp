@@ -81,7 +81,7 @@ void Collider::Render()
 	shader->Draw(0, 0, 5);
 }
 
-bool Collider::Aabb(D3DXMATRIX & world, D3DXVECTOR2 & position)
+bool Collider::Aabb(D3DXMATRIX world, D3DXVECTOR2 position)
 {
 	// À§Ä¡ ÁÂÇ¥
 	D3DXVECTOR2 position1 = D3DXVECTOR2(world._41, world._42);

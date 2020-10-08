@@ -30,8 +30,6 @@ public:
 	void Color(D3DXCOLOR&& vec);
 	D3DXCOLOR Color() { return color; }
 
-	void Pass(UINT val) { pass = val; }
-
 	Matrix World() { return world; }
 	void World(Matrix& matrix) { world = matrix; }
 
@@ -57,8 +55,6 @@ private:
 	D3DXCOLOR color;
 
 	Matrix world;
-
-	UINT pass;
 
 	Collider* collider;
 };

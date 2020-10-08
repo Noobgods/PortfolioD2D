@@ -3,7 +3,6 @@
 
 Rect::Rect()
 	: position(0, 0), scale(1, 1), color(1, 1, 1, 0)
-	, pass(0)
 {
 	Initialize();
 
@@ -11,7 +10,6 @@ Rect::Rect()
 
 Rect::Rect(D3DXVECTOR2 position, D3DXVECTOR2 scale, D3DXCOLOR color)
 	:position(position), scale(scale), color(color)
-	, pass(0)
 {
 	Initialize();
 
@@ -117,7 +115,7 @@ void Rect::Render()
 	// indexBuffer를 통해서 넘길때 4Byte (우리가 넘길 데이터 크기)
 	DeviceContext->IASetIndexBuffer(indexBuffer, DXGI_FORMAT_R32_UINT, 0);
 
-	shader->DrawIndexed(0, pass, 6);
+	shader->DrawIndexed(0, 0, 6);
 
 	collider->Render();
 }
@@ -165,6 +163,5 @@ void Rect::Color(D3DXCOLOR & vec)
 void Rect::Color(D3DXCOLOR && vec)
 {
 	color = vec;
-
 	sColor->SetFloatVector(color);
 }
