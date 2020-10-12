@@ -6,7 +6,7 @@
 
 S02_EditorScene::S02_EditorScene(SceneValues * values)
 	: Scene(values)
-	, stage(0)
+	, stage(1)
 {
 	background = new Background(Vector2(0, 0), Vector2(SCALE_X, SCALE_Y));
 	
@@ -30,6 +30,15 @@ S02_EditorScene::S02_EditorScene(SceneValues * values)
 				bubbleBox[i][j] = new Rect(boxLine[i][j], Vector2(BUBBLE_SIZE_X, BUBBLE_SIZE_Y));
 				bubbles[i][j] = 0;
 			}
+		}
+	}
+
+	// Stage Load
+	FileManager::Load(L"CustomStage.bin");
+	int(*tempBubbles)[BUBBLE_LINE_SIZE_X] = (int(*)[BUBBLE_LINE_SIZE_X])FileManager::GetBubbles(stage);
+	for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y - 1; i++) {
+		for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
+			bubbles[i][j] = tempBubbles[i][j];
 		}
 	}
 }
@@ -96,7 +105,7 @@ void S02_EditorScene::Render()
 					break;
 					//주황
 				case 6:
-					bubbleBox[i][j]->Color(0.3, 0.1, 0.6, 1);
+					bubbleBox[i][j]->Color(1, 0.5, 0.1, 1);
 					break;
 					//검정
 				case 7:
@@ -137,13 +146,12 @@ void S02_EditorScene::EditBubble() {
 	}
 }
 void S02_EditorScene::RenderImGui() {
-
 	ImGui::Combo("BubbleColor", &bubbleColor, "None\0Blue\0Yellow\0Red\0Green\0Purple\0Orange\0Black\0White");
 
-	ImGui::DragInt("StageNumber", stage)
+	ImGui::DragInt("StageNumber", &stage, 0.1f, 1, 30);
 	// Save Bubbles
 	if (ImGui::Button("SaveStage")) {
-		FileManager::SetBubbles(bubbles);
+		FileManager::SetBubbles(bubbles, stage);
 		FileManager::Save(L"CustomStage.bin");
 	}
 	ImGui::SameLine();
@@ -151,7 +159,7 @@ void S02_EditorScene::RenderImGui() {
 	// Load Bubbles
 	if (ImGui::Button("LoadStage")) {
 		FileManager::Load(L"CustomStage.bin");
-		int(* tempBubbles)[BUBBLE_LINE_SIZE_X] = (int(*)[BUBBLE_LINE_SIZE_X])FileManager::GetBubbles();
+		int(* tempBubbles)[BUBBLE_LINE_SIZE_X] = (int(*)[BUBBLE_LINE_SIZE_X])FileManager::GetBubbles(stage);
 		for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y - 1; i++) {
 			for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
 				bubbles[i][j] = tempBubbles[i][j];

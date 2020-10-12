@@ -147,7 +147,6 @@
     <ClInclude Include="Scenes\S01_GameScene.h" />
     <ClInclude Include="Scenes\S02_EditorScene.h" />
     <ClInclude Include="Scenes\Scene.h" />
-    <ClInclude Include="Stage.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Systems\AudioSystem.h" />
     <ClInclude Include="Systems\Device.h" />

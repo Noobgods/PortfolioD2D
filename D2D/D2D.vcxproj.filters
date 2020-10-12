@@ -68,9 +68,6 @@
     <ClInclude Include="Objects\Ceiling.h">
       <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Stage.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="Systems\Mouse.h">
       <Filter>Systems</Filter>
     </ClInclude>

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "S01_GameScene.h"
-#include "Stage.h"
+#include "FileManager.h"
 
 #include "Objects/Arrow.h"
 #include "Objects/Bubble.h"
@@ -17,7 +17,7 @@ S01_GameScene::S01_GameScene(SceneValues * values)
 	, fStageTime(0.0f)
 	, fCeilingY(CEILING_Y)
 	, stageState(State::READY)
-	, uiStage(0)
+	, uiStage(1)
 	, uiExplodeCount(0)
 	, uiCeilingLine(0)
 	, uiOverLine(BUBBLE_LINE_SIZE_Y - 1)
@@ -100,14 +100,16 @@ void S01_GameScene::Update()
 			}
 		}
 		// Stage Set
-		if (uiStage >= 3) {
-			ceiling->Stage(1);
-			background->Stage(1);
-		}
-		for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y; i++) {
+		ceiling->Stage(uiStage/3);
+		background->Stage(uiStage/3);
+	
+		// Stage Load
+		FileManager::Load(L"CustomStage.bin");
+		int(*tempBubbles)[BUBBLE_LINE_SIZE_X] = (int(*)[BUBBLE_LINE_SIZE_X])FileManager::GetBubbles((int)uiStage);
+		for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y - 1; i++) {
 			for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
-				if (stage[uiStage][i][j] != 0) {
-					bubbles[i][j] = new Bubble(bubbleLine[i][j], Vector2(SCALE_X, SCALE_Y), stage[uiStage][i][j]);
+				if (tempBubbles[i][j] != 0) {
+					bubbles[i][j] = new Bubble(bubbleLine[i][j], Vector2(SCALE_X, SCALE_Y), tempBubbles[i][j]);
 					bRemainsColor[bubbles[i][j]->GetBubbleColor()]++;
 				}
 			}

@@ -3,6 +3,7 @@
 
 
 UINT FileManager::stageBubbles[MAX_STAGE][BUBBLE_LINE_SIZE_Y][BUBBLE_LINE_SIZE_X];
+UINT FileManager::stages;
 
 void FileManager::Save(wstring fileName)
 {
@@ -14,8 +15,8 @@ void FileManager::Save(wstring fileName)
 		string str = String::ToString(fileName);
 		w->Open(fileName);
 
-		w->UInt(stages);
-		for (int s = 0; s < stages; s++)
+		w->UInt(MAX_STAGE);
+		for (int s = 0; s < MAX_STAGE; s++)
 		for (int i = 0; i < BUBBLE_LINE_SIZE_Y; i++) {
 			for (int j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
 				w->UInt(stageBubbles[s][i][j]);
@@ -65,5 +66,5 @@ void FileManager::SetBubbles(UINT(* bubbles)[BUBBLE_LINE_SIZE_X], UINT stage)
 
 void* FileManager::GetBubbles(int stage)
 {
-	return stageBubbles;
+	return stageBubbles[stage];
 }

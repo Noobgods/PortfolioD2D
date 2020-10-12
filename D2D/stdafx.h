@@ -98,6 +98,8 @@ typedef D3DXQUATERNION Quaternion;
 #define BUBBLE_LINE_SIZE_X 8
 #define BUBBLE_LINE_SIZE_Y 12
 
+#define MAX_STAGE 31
+
 //Extern Global
 extern UINT Width;
 extern UINT Height;

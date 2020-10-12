@@ -20,7 +20,7 @@ private:
 	Rect* bubbleBox[BUBBLE_LINE_SIZE_Y][BUBBLE_LINE_SIZE_X];
 	UINT bubbles[BUBBLE_LINE_SIZE_Y][BUBBLE_LINE_SIZE_X];
 
-	UINT stage;
+	int stage;
 	int bubbleColor;
 
 };

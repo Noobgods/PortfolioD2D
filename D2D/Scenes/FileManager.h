@@ -1,5 +1,4 @@
 #pragma once
-#define MAX_STAGE 30
 class FileManager {
 public:
 	static void Save(wstring fileName);
