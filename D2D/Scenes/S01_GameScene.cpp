@@ -21,6 +21,7 @@ S01_GameScene::S01_GameScene(SceneValues * values)
 	, uiExplodeCount(0)
 	, uiCeilingLine(0)
 	, uiOverLine(BUBBLE_LINE_SIZE_Y - 1)
+	, uiScore(0)
 	, fBubbleShake(80.0f)
 	, fBubbleDistance(0.0f)
 	, fShakeSpeed(80.0f)
@@ -110,7 +111,7 @@ void S01_GameScene::Update()
 			for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
 				if (tempBubbles[i][j] != 0) {
 					bubbles[i][j] = new Bubble(bubbleLine[i][j], Vector2(SCALE_X, SCALE_Y), tempBubbles[i][j]);
-					bRemainsColor[bubbles[i][j]->GetBubbleColor()]++;
+					uiRemainsColor[bubbles[i][j]->GetBubbleColor()]++;
 				}
 			}
 		}
@@ -232,7 +233,7 @@ void S01_GameScene::Update()
 		// 승리 (조건 볼이 0개 있을경우)
 		UINT ballCount = 0;
 		for (UINT i = 1; i <= 8; i++) {
-			ballCount += bRemainsColor[i];
+			ballCount += uiRemainsColor[i];
 		}
 		if (ballCount <= 0) {
 			fStageTime = 0;
@@ -332,13 +333,13 @@ void S01_GameScene::Update()
 		shootBubble->Update(V, P);
 
 	for (UINT i = 1; i <= 8; i++) {
-		bRemainsColor[i] = 0;
+		uiRemainsColor[i] = 0;
 	}
 	for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y; i++) {
 		for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
 			if (bubbles[i][j] != NULL) {
 				bubbles[i][j]->Update(V, P);
-				bRemainsColor[bubbles[i][j]->GetBubbleColor()]++;
+				uiRemainsColor[bubbles[i][j]->GetBubbleColor()]++;
 			}
 		}
 	}
@@ -386,14 +387,14 @@ UINT S01_GameScene::RandomSeed()
 	UINT rnd = 0;
 	do {
 		rnd = rand() % 8 + 1;
-	} while (0 == bRemainsColor[rnd]);
+	} while (0 == uiRemainsColor[rnd]);
 	return rnd;
 }
 
 void S01_GameScene::CeilingDown()
 {
 	/// Bubbles 흔들기
-	if (fStageTime >= 15) {
+	if (fStageTime >= 17) {
 		for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y; i++) {
 			for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
 				if (bubbles[i][j] != NULL) {
@@ -416,13 +417,7 @@ void S01_GameScene::CeilingDown()
 		fShakeSpeed = 220.0f;
 	}
 	else if (fStageTime >= 18) {
-		fShakeSpeed = 180.0f;
-	}
-	else if (fStageTime >= 17) {
 		fShakeSpeed = 140.0f;
-	}
-	else if (fStageTime >= 16) {
-		fShakeSpeed = 100.0f;
 	}
 
 	/// 천장 내려오기

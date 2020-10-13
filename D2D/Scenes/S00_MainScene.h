@@ -10,5 +10,7 @@ public:
 	void Render() override;
 
 private:
+	Sprite* background;
+	Sprite* mainTitle;
 
 };

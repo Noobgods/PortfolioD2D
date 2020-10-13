@@ -57,11 +57,12 @@ private:
 	bool bCheckAirBubbles[BUBBLE_LINE_SIZE_Y][BUBBLE_LINE_SIZE_X];
 	State stageState;
 
-	UINT bRemainsColor[9];
+	UINT uiRemainsColor[9];
 	UINT uiStage;
 	UINT uiExplodeCount;
 	UINT uiOverLine;
 	UINT uiCeilingLine;
+	UINT uiScore;
 
 	float fBubbleShake;
 	float fBubbleDistance;

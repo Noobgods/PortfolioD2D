@@ -61,8 +61,6 @@ Ceiling::~Ceiling()
 
 void Ceiling::Update(Matrix & V, Matrix & P)
 {
-	Vector2 position = animation->Position();
-
 	animation->Play(currentStage);
 	animation->GetClip()->SetFrame(frameNumber);
 	animation->Update(V, P);

@@ -19,7 +19,7 @@ public:
 	D3DXVECTOR2 Scale();
 
 	void FrameNumber(UINT val) { frameNumber = val; }
-	void Stage(UINT val) { currentStage = val; }
+	void Stage(UINT val) { currentStage = val; animation->Stop(); }
 private:
 	Animation *animation;
 
