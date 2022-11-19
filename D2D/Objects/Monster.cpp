@@ -16,7 +16,7 @@ Monster::Monster(Vector2 position, Vector2 scale, UINT color)
 
 	Clip* clip;
 	switch (monsterColor) {
-	/// ÆÄ¶õ»ö
+	/// íŒŒë€ìƒ‰
 	case 1: {
 		{
 			clip = new Clip(PlayMode::Loop);
@@ -27,7 +27,7 @@ Monster::Monster(Vector2 position, Vector2 scale, UINT color)
 			animation->AddClip(clip);
 		}
 	}break;
-	/// ³ë¶õ»ö
+	/// ë…¸ë€ìƒ‰
 	case 2: {
 		{
 			clip = new Clip(PlayMode::Loop);
@@ -38,7 +38,7 @@ Monster::Monster(Vector2 position, Vector2 scale, UINT color)
 			animation->AddClip(clip);
 		}
 	}break;
-	/// »¡°£»ö
+	/// ë¹¨ê°„ìƒ‰
 	case 3: {
 		{
 			clip = new Clip(PlayMode::Loop);
@@ -49,7 +49,7 @@ Monster::Monster(Vector2 position, Vector2 scale, UINT color)
 			animation->AddClip(clip);
 		}
 	}break;
-	/// ³ì»ö
+	/// ë…¹ìƒ‰
 	case 4: {
 		{
 			clip = new Clip(PlayMode::Loop);
@@ -60,7 +60,7 @@ Monster::Monster(Vector2 position, Vector2 scale, UINT color)
 			animation->AddClip(clip);
 		}
 	}break;
-	/// º¸¶ó»ö
+	/// ë³´ë¼ìƒ‰
 	case 5: {
 		{
 			clip = new Clip(PlayMode::Loop);
@@ -71,7 +71,7 @@ Monster::Monster(Vector2 position, Vector2 scale, UINT color)
 			animation->AddClip(clip);
 		}
 	}break;
-	/// ÁÖÈ²»ö
+	/// ì£¼í™©ìƒ‰
 	case 6: {
 		{
 			clip = new Clip(PlayMode::Loop);
@@ -82,7 +82,7 @@ Monster::Monster(Vector2 position, Vector2 scale, UINT color)
 			animation->AddClip(clip);
 		}
 	}break;
-	// °ËÁ¤»ö
+	// ê²€ì •ìƒ‰
 	case 7: {
 		{
 			clip = new Clip(PlayMode::Loop);
@@ -93,7 +93,7 @@ Monster::Monster(Vector2 position, Vector2 scale, UINT color)
 			animation->AddClip(clip);
 		}
 	}break;
-	/// Èò»ö
+	/// í°ìƒ‰
 	case 8: {
 		{
 			clip = new Clip(PlayMode::Loop);

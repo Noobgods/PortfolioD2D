@@ -75,16 +75,16 @@ void Sprite::Initialize(wstring textureFile, wstring shaderFile, float startX, f
 	//Create VertexBuffer
 	{
 		D3D11_BUFFER_DESC desc;
-		ZeroMemory(&desc, sizeof(D3D11_BUFFER_DESC));	// NULL·Î ÃÊ±âÈ­
-		desc.Usage = D3D11_USAGE_DEFAULT;	// Á¢±Ù±ÇÇÑ DEFAULT(), DYNAMIC(CPU)
-		desc.ByteWidth = sizeof(Vertex) * 4;	// Å©±â
-		desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;	// »ç¿ë¿ëµµ
+		ZeroMemory(&desc, sizeof(D3D11_BUFFER_DESC));	// NULLë¡œ ì´ˆê¸°í™”
+		desc.Usage = D3D11_USAGE_DEFAULT;	// ì ‘ê·¼ê¶Œí•œ DEFAULT(), DYNAMIC(CPU)
+		desc.ByteWidth = sizeof(Vertex) * 4;	// í¬ê¸°
+		desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;	// ì‚¬ìš©ìš©ë„
 
 		D3D11_SUBRESOURCE_DATA data;
-		ZeroMemory(&data, sizeof(D3D11_SUBRESOURCE_DATA));	// NULL·Î ÃÊ±âÈ­
-		data.pSysMem = vertices;	// ½ÃÀÛ ÁÖ¼Ò
+		ZeroMemory(&data, sizeof(D3D11_SUBRESOURCE_DATA));	// NULLë¡œ ì´ˆê¸°í™”
+		data.pSysMem = vertices;	// ì‹œìž‘ ì£¼ì†Œ
 
-		// description, ¼­ºê¸¯ ¼Ò½º, ¸¸µé °´Ã¼
+		// description, ì„œë¸Œë¦­ ì†ŒìŠ¤, ë§Œë“¤ ê°ì²´
 		HRESULT hr = Device->CreateBuffer(&desc, &data, &vertexBuffer);
 		assert(SUCCEEDED(hr));
 	}

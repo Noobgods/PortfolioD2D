@@ -86,7 +86,7 @@ void S01_GameScene::Update()
 	D3DXMATRIX V = values->MainCamera->View();
 	D3DXMATRIX P = values->Projection;
 
-	/// ±¸Çö : Begin
+	/// êµ¬í˜„ : Begin
 	//// State::READY
 	if (stageState == State::READY) {
 		// Bubbles Line Position Set / Bubbles Set
@@ -124,7 +124,7 @@ void S01_GameScene::Update()
 		readyBubble = new Bubble(Vector2(-0.0f, -320.0f), Vector2(SCALE_X, SCALE_Y), RandomSeed());
 		readyBubble->BubbleState(BState::READY);
 
-		// º¯¼ö ÃÊ±âÈ­
+		// ë³€ìˆ˜ ì´ˆê¸°í™”
 		launchingPad->State(SDState::IDLE);
 		ceiling->Position(0.0f, 368.0f);
 		ceiling->FrameNumber(0);
@@ -137,7 +137,7 @@ void S01_GameScene::Update()
 		Audio->Play("BGM");
 		Audio->Play("READY");
 
-		// State º¯°æ
+		// State ë³€ê²½
 		stageState = State::GO;
 	}
 
@@ -147,14 +147,14 @@ void S01_GameScene::Update()
 			Audio->Play("GO");
 			fStageTime = 0.0f;
 
-			// State º¯°æ
+			// State ë³€ê²½
 			stageState = State::GAME;
 		}
 	}
 
 	//// State::GAME
 	if (stageState == State::GAME) {
-		/// È¸Àü
+		/// íšŒì „
 		if (Key->Press('A')) {
 			fBubbleRotation += fRotationSpeed * LIMIT_ANGLE / LAUNCHER_ANGLE * Time::Delta();
 			launchingPad->State(SDState::SPIN);
@@ -167,14 +167,14 @@ void S01_GameScene::Update()
 			launchingPad->State(SDState::IDLE);
 		}
 
-		// ¹ß»ç´ë È¸Àü
+		// ë°œì‚¬ëŒ€ íšŒì „
 		launchingPad->FrameNumber((UINT)fBubbleRotation / 4);
 		arrow->FrameNumber((int)(-fBubbleRotation * 0.75));
 
-		/// °¢µµ Á¦ÇÑ
+		/// ê°ë„ ì œí•œ
 		if (fBubbleRotation <= -LIMIT_ANGLE) fBubbleRotation = -LIMIT_ANGLE;
 		if (fBubbleRotation >= LIMIT_ANGLE) fBubbleRotation = LIMIT_ANGLE;
-		/// ¹ß»ç
+		/// ë°œì‚¬
 		if (Key->Down(VK_SPACE) && shootBubble == NULL && deleteBubbles.size() == 0) {
 			Audio->Play("SHOT");
 			launchDragon->ShootBubble();
@@ -192,55 +192,55 @@ void S01_GameScene::Update()
 			waitBubble->BubbleState(BState::SPAWN);
 		}
 
-		/// ÃµÀå¿¡ ºÎµúÇûÀ»¶§
+		/// ì²œì¥ì— ë¶€ë”ªí˜”ì„ë•Œ
 		if (shootBubble != NULL && shootBubble->Position().y > fCeilingY) {
 			Audio->Play("BUMP");
 			Vector2 sPos = shootBubble->Position();
 			UINT x_ = (UINT)((sPos.x + 224.0f) / 56);
 
-			// shoot -> bubbles ÀüÈ¯
+			// shoot -> bubbles ì „í™˜
 			bubbles[0][x_] = shootBubble;
 			shootBubble->Position(bubbleLine[0][x_]);
 			shootBubble->BubbleState(BState::IDLE);
 
-			// Explode Ã¼Å©
+			// Explode ì²´í¬
 			BubbleExplodeCheck(x_, 0);
 			shootBubble = NULL;
 		}
 
-		/// Ãæµ¹Ã³¸®, Bubbles ¾÷µ¥ÀÌÆ®
+		/// ì¶©ëŒì²˜ë¦¬, Bubbles ì—…ë°ì´íŠ¸
 		for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y; i++) {
 			for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
 				if (bubbles[i][j] != NULL) {
 					if (shootBubble != NULL && Collider::Cbb(shootBubble->getCollider()->World(), bubbles[i][j]->getCollider()->World())) {
 						Audio->Play("BUMP");
-						// º¼ ºÙÀÌ±â
+						// ë³¼ ë¶™ì´ê¸°
 						BubbleStitch(j, i);
 					}
 				}
 			}
 		}
 
-		// °øÁß ¹öºí Ã¼Å©
+		// ê³µì¤‘ ë²„ë¸” ì²´í¬
 		for (int i = 0; i < 8; i++) {
 			BubbleAirCheck(i, 0);
 		}
 
-		// ÃµÀå ³»¸®±â
+		// ì²œì¥ ë‚´ë¦¬ê¸°
 		fStageTime += Time::Delta();
 		CeilingDown();
 
-		// ½Â¸® (Á¶°Ç º¼ÀÌ 0°³ ÀÖÀ»°æ¿ì)
+		// ìŠ¹ë¦¬ (ì¡°ê±´ ë³¼ì´ 0ê°œ ìˆì„ê²½ìš°)
 		UINT ballCount = 0;
 		for (UINT i = 1; i <= 8; i++) {
 			ballCount += uiRemainsColor[i];
 		}
 		if (ballCount <= 0) {
 			fStageTime = 0;
-			// State º¯°æ
+			// State ë³€ê²½
 			stageState = State::WIN;
 		}
-		// ÆĞ¹è
+		// íŒ¨ë°°
 		for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
 			if (bubbles[uiOverLine][j] != NULL) {
 				for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y; i++) {
@@ -260,12 +260,12 @@ void S01_GameScene::Update()
 		Audio->Play("CLEAR");
 		Audio->Stop("BGM");
 
-		// readyBubble »èÁ¦
+		// readyBubble ì‚­ì œ
 		readyBubble->BubbleState(BState::BURST);
 		deleteBubbles.push_back(readyBubble);
 		readyBubble = NULL;
 
-		// waitBubble »èÁ¦
+		// waitBubble ì‚­ì œ
 		waitBubble->BubbleState(BState::BURST);
 		deleteBubbles.push_back(waitBubble);
 		waitBubble = NULL;
@@ -280,10 +280,10 @@ void S01_GameScene::Update()
 		Audio->Play("GO");
 		fStageTime += Time::Delta();
 		if (fStageTime >= 4.0f) {
-			// ½ºÅ×ÀÌÁö º¯°æ
+			// ìŠ¤í…Œì´ì§€ ë³€ê²½
 			uiStage++;
 			launchDragon->ReadyStage();
-			// State º¯°æ
+			// State ë³€ê²½
 			stageState = State::READY;
 		}
 	}
@@ -298,7 +298,7 @@ void S01_GameScene::Update()
 			launchDragon->ReadyStage();
 		}
 	}
-	/// ±¸Çö : End
+	/// êµ¬í˜„ : End
 
 	/// Delete : Begin
 	BubbleExplodeDelete();
@@ -393,7 +393,7 @@ UINT S01_GameScene::RandomSeed()
 
 void S01_GameScene::CeilingDown()
 {
-	/// Bubbles Èçµé±â
+	/// Bubbles í”ë“¤ê¸°
 	if (fStageTime >= 17) {
 		for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y; i++) {
 			for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
@@ -420,26 +420,26 @@ void S01_GameScene::CeilingDown()
 		fShakeSpeed = 140.0f;
 	}
 
-	/// ÃµÀå ³»·Á¿À±â
+	/// ì²œì¥ ë‚´ë ¤ì˜¤ê¸°
 	if (fStageTime >= 20) {
-		// ÃµÀå ³ôÀÌ ³»¸®±â
+		// ì²œì¥ ë†’ì´ ë‚´ë¦¬ê¸°
 		Audio->Play("PING");
 		fCeilingY -= 56;
 		uiOverLine -= 1;
 
-		// ÃµÀå ¾Ö´Ï¸ŞÀÌ¼Ç/À§Ä¡ ¼öÁ¤
+		// ì²œì¥ ì• ë‹ˆë©”ì´ì…˜/ìœ„ì¹˜ ìˆ˜ì •
 		ceiling->Position(ceiling->Position().x, ceiling->Position().y - 28.0f);
 		ceiling->FrameNumber(++uiCeilingLine);
 
 		for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y; i++) {
 			for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
 				bubbleLine[i][j].y -= 56;
-				// Bubbles ³»¸®±â
+				// Bubbles ë‚´ë¦¬ê¸°
 				if (bubbles[i][j] != NULL) {
 					bubbles[i][j]->Position(bubbleLine[i][j]);
 				}
 
-				// BubbleLine ³»¸®±â
+				// BubbleLine ë‚´ë¦¬ê¸°
 
 			}
 		}
@@ -452,61 +452,61 @@ void S01_GameScene::BubbleStitch(UINT x_, UINT y_)
 	Vector2 sPos = shootBubble->Position();
 	Vector2 bPos = bubbles[y_][x_]->Position();
 
-	/// ºÙÀ» À§Ä¡ 
+	/// ë¶™ì„ ìœ„ì¹˜ 
 	if (y_ % 2 == 0) {
-		// ¿ŞÂÊ À§
+		// ì™¼ìª½ ìœ„
 		if (sPos.x < bPos.x && bPos.y - sPos.y <= -28.0f) {
 			x_ -= 1; y_ -= 1;
 		}
-		// ¿À¸¥ÂÊ À§
+		// ì˜¤ë¥¸ìª½ ìœ„
 		else if (sPos.x >= bPos.x && bPos.y - sPos.y <= -28.0f) {
 			y_ -= 1;
 		}
-		// ¿ŞÂÊ ¾Æ·¡
+		// ì™¼ìª½ ì•„ë˜
 		else if (sPos.x < bPos.x && bPos.y - sPos.y >= 28.0f) {
 			x_ -= 1; y_ += 1;
 		}
-		// ¿À¸¥ÂÊ ¾Æ·¡
+		// ì˜¤ë¥¸ìª½ ì•„ë˜
 		else if (sPos.x >= bPos.x && bPos.y - sPos.y >= 28.0f) {
 			y_ += 1;
 		}
-		// ¿ŞÂÊ
+		// ì™¼ìª½
 		else if (sPos.x < bPos.x) {
 			x_ -= 1;
 		}
-		// ¿À¸¥ÂÊ
+		// ì˜¤ë¥¸ìª½
 		else if (sPos.x >= bPos.x) {
 			x_ += 1;
 		}
 	}
 	else {
-		// ¿ŞÂÊ À§
+		// ì™¼ìª½ ìœ„
 		if (sPos.x < bPos.x && bPos.y - sPos.y <= -28.0f) {
 			y_ -= 1;
 		}
-		// ¿À¸¥ÂÊ À§
+		// ì˜¤ë¥¸ìª½ ìœ„
 		else if (sPos.x >= bPos.x && bPos.y - sPos.y <= -28.0f) {
 			x_ += 1; y_ -= 1;
 		}
-		// ¿ŞÂÊ ¾Æ·¡
+		// ì™¼ìª½ ì•„ë˜
 		else if (sPos.x < bPos.x && bPos.y - sPos.y >= 28.0f) {
 			y_ += 1;
 		}
-		// ¿À¸¥ÂÊ ¾Æ·¡
+		// ì˜¤ë¥¸ìª½ ì•„ë˜
 		else if (sPos.x >= bPos.x && bPos.y - sPos.y >= 28.0f) {
 			x_ += 1; y_ += 1;
 		}
-		// ¿ŞÂÊ
+		// ì™¼ìª½
 		else if (sPos.x < bPos.x) {
 			x_ -= 1;
 		}
-		// ¿À¸¥ÂÊ
+		// ì˜¤ë¥¸ìª½
 		else if (sPos.x >= bPos.x) {
 			x_ += 1;
 		}
 	}
 
-	// shoot -> bubbles ÀüÈ¯
+	// shoot -> bubbles ì „í™˜
 	this->bubbles[y_][x_] = this->shootBubble;
 	this->shootBubble->Position(bubbleLine[y_][x_]);
 	this->shootBubble->BubbleState(BState::IDLE);
@@ -518,15 +518,15 @@ void S01_GameScene::BubbleStitch(UINT x_, UINT y_)
 
 void S01_GameScene::BubbleExplodeCheck(UINT x, UINT y)
 {
-	// x, y°¡ ¹üÀ§ ¹ÛÀÎ °æ¿ì
+	// x, yê°€ ë²”ìœ„ ë°–ì¸ ê²½ìš°
 	if (y > uiOverLine) return;
 	if (x < 0 || y < 0) return;
 	if (x > 7 && y % 2 == 0) return;
 	if (x > 6 && y % 2 == 1) return;
 
-	// ÀÌ¹Ì Ã¼Å© µÇ¾îÀÖÀ¸¸é
+	// ì´ë¯¸ ì²´í¬ ë˜ì–´ìˆìœ¼ë©´
 	if (bCheckBubbles[y][x]) return;
-	// ¹öºíÀÌ ¾øÀ¸¸é
+	// ë²„ë¸”ì´ ì—†ìœ¼ë©´
 	if (bubbles[y][x] == NULL) return;
 
 	if (bubbles[y][x]->BubbleState() == BState::BURST) return;
@@ -534,14 +534,14 @@ void S01_GameScene::BubbleExplodeCheck(UINT x, UINT y)
 
 	UINT ballNumber = shootBubble->GetBubbleColor();
 
-	// °°Àº »öÀÌ ¾Æ´Ï¸é
+	// ê°™ì€ ìƒ‰ì´ ì•„ë‹ˆë©´
 	if (ballNumber != bubbles[y][x]->GetBubbleColor()) return;
 
-	// Ã¼Å©
+	// ì²´í¬
 	bCheckBubbles[y][x] = true;
 	uiExplodeCount++;
 
-	if (y % 2 == 0) {	// 8Ä­Â¥¸® ÁÙ
+	if (y % 2 == 0) {	// 8ì¹¸ì§œë¦¬ ì¤„
 		BubbleExplodeCheck(x - 1, y - 1);
 		BubbleExplodeCheck(x, y - 1);
 		BubbleExplodeCheck(x - 1, y);
@@ -549,7 +549,7 @@ void S01_GameScene::BubbleExplodeCheck(UINT x, UINT y)
 		BubbleExplodeCheck(x - 1, y + 1);
 		BubbleExplodeCheck(x, y + 1);
 	}
-	else {	// 7Ä­Â¥¸® ÁÙ
+	else {	// 7ì¹¸ì§œë¦¬ ì¤„
 		BubbleExplodeCheck(x, y - 1);
 		BubbleExplodeCheck(x + 1, y - 1);
 		BubbleExplodeCheck(x - 1, y);
@@ -591,17 +591,17 @@ void S01_GameScene::BubbleExplodeDelete()
 
 void S01_GameScene::BubbleAirCheck(UINT x, UINT y)
 {
-	// ÀÌ¹Ì Ã¼Å© µÇ¾îÀÖÀ¸¸é
+	// ì´ë¯¸ ì²´í¬ ë˜ì–´ìˆìœ¼ë©´
 	if (bCheckAirBubbles[y][x]) return;
-	// ¹öºíÀÌ ¾øÀ¸¸é
+	// ë²„ë¸”ì´ ì—†ìœ¼ë©´
 	if (bubbles[y][x] == NULL) return;
-	// x, y°¡ ¹üÀ§ ¹ÛÀÎ °æ¿ì
+	// x, yê°€ ë²”ìœ„ ë°–ì¸ ê²½ìš°
 	if (y > uiOverLine) return;
 	if (x < 0 || y < 0) return;
 	if (x > 7 && y % 2 == 0) return;
 	if (x > 6 && y % 2 == 1) return;
 
-	// Ã¼Å©
+	// ì²´í¬
 	bCheckAirBubbles[y][x] = true;
 
 	if (y != 0) {
@@ -609,11 +609,11 @@ void S01_GameScene::BubbleAirCheck(UINT x, UINT y)
 		BubbleAirCheck(x + 1, y);
 	}
 
-	if (y % 2 == 0) {	// 8Ä­Â¥¸® ÁÙ
+	if (y % 2 == 0) {	// 8ì¹¸ì§œë¦¬ ì¤„
 		BubbleAirCheck(x - 1, y + 1);
 		BubbleAirCheck(x, y + 1);
 	}
-	else {	// 7Ä­Â¥¸® ÁÙ
+	else {	// 7ì¹¸ì§œë¦¬ ì¤„
 		BubbleAirCheck(x, y + 1);
 		BubbleAirCheck(x + 1, y + 1);
 	}
@@ -642,7 +642,7 @@ void S01_GameScene::BubbleDelete()
 {
 	UINT size = deleteBubbles.size();
 	for (UINT i = 0; i < size; i++) {
-		// deleteBubbles Áß¿¡ DEL »óÅÂÀÎ°Å ºñ¿ì±â
+		// deleteBubbles ì¤‘ì— DEL ìƒíƒœì¸ê±° ë¹„ìš°ê¸°
 		if (deleteBubbles[i]->BubbleState() == BState::DEL) {
 			SAFE_DELETE(deleteBubbles[i]);
 			deleteBubbles[i] = NULL;
@@ -650,7 +650,7 @@ void S01_GameScene::BubbleDelete()
 	}
 
 	for (UINT i = 0; i < deleteBubbles.size(); i++) {
-		// ºñ¾îÀÖ´Â deleteBubbles Áö¿öÁÖ±â
+		// ë¹„ì–´ìˆëŠ” deleteBubbles ì§€ì›Œì£¼ê¸°
 		if (deleteBubbles[i] == NULL) {
 			deleteBubbles.erase(deleteBubbles.begin() + i);
 			i -= 1;
@@ -662,7 +662,7 @@ void S01_GameScene::MonsterDelete()
 {
 	UINT size = deleteMonster.size();
 	for (UINT i = 0; i < size; i++) {
-		// deleteMonster Áß¿¡ DEL »óÅÂÀÎ°Å ºñ¿ì±â
+		// deleteMonster ì¤‘ì— DEL ìƒíƒœì¸ê±° ë¹„ìš°ê¸°
 		if (deleteMonster[i]->State() == MState::DEL) {
 			SAFE_DELETE(deleteMonster[i]);
 			deleteMonster[i] = NULL;
@@ -670,7 +670,7 @@ void S01_GameScene::MonsterDelete()
 	}
 
 	for (UINT i = 0; i < deleteMonster.size(); i++) {
-		// ºñ¾îÀÖ´Â deleteMonster Áö¿öÁÖ±â
+		// ë¹„ì–´ìˆëŠ” deleteMonster ì§€ì›Œì£¼ê¸°
 		if (deleteMonster[i] == NULL) {
 			deleteMonster.erase(deleteMonster.begin() + i);
 			i -= 1;

@@ -8,7 +8,7 @@ int APIENTRY WinMain
 	LPSTR lPCmdLine,
 	int nCmdShow
 ){
-	InitWindow(hInstance, nCmdShow);	// À©µµ¿ì ÃÊ±âÈ­
+	InitWindow(hInstance, nCmdShow);	// ìœˆë„ìš° ì´ˆê¸°í™”
 	InitDirect3D(hInstance);
 
 	Running();
@@ -17,7 +17,7 @@ int APIENTRY WinMain
 	return 0;
 }
 
-// extern Àü¿ª º¯¼ö
+// extern ì „ì—­ ë³€ìˆ˜
 UINT Width = 320 * 4;
 UINT Height = 224 * 4;
 
@@ -36,18 +36,18 @@ AudioSystem* Audio = NULL;
 void InitWindow(HINSTANCE hInstance, int nCmdShow) {
 	// Register Wnd Class
 	{
-		WNDCLASSEX wc; // À©µµ¿ì Å¬·¡½º »ı¼º
+		WNDCLASSEX wc; // ìœˆë„ìš° í´ë˜ìŠ¤ ìƒì„±
 		wc.cbSize = sizeof(WNDCLASSEX);
-		wc.style = CS_HREDRAW | CS_VREDRAW;					// ¼öÁ÷, ¼öÆòÅ©±â º¯ÇÒ½Ã ´Ù½Ã ±×¸²
-		wc.lpfnWndProc = WndProc;							// À©µµ¿ì ¸Ş¼¼Áö Ã³¸®ÇÔ¼ö ÁöÁ¤
-		wc.cbClsExtra = NULL;								// ¿¹¾à ¿µ¿ª
+		wc.style = CS_HREDRAW | CS_VREDRAW;					// ìˆ˜ì§, ìˆ˜í‰í¬ê¸° ë³€í• ì‹œ ë‹¤ì‹œ ê·¸ë¦¼
+		wc.lpfnWndProc = WndProc;							// ìœˆë„ìš° ë©”ì„¸ì§€ ì²˜ë¦¬í•¨ìˆ˜ ì§€ì •
+		wc.cbClsExtra = NULL;								// ì˜ˆì•½ ì˜ì—­
 		wc.cbWndExtra = NULL;
-		wc.hInstance = hInstance;							// ÀÀ¿ë ÇÁ·Î±×·¥ ÀÎ½ºÅÏ½º
-		wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);			// ÃÖ¼ÒÈ­ µÇ¾úÀ»¶§ Ãâ·ÂµÉ ¾ÆÀÌÄÜ
-		wc.hCursor = LoadCursor(NULL, IDC_ARROW);			// »ç¿ëÇÒ ¸¶¿ì½º Ä¿¼­
-		wc.hbrBackground = static_cast<HBRUSH>(WHITE_BRUSH);// ¹è°æ»ö»ó ºê·¯½Ã ÁöÁ¤
-		wc.lpszMenuName = NULL;								// ÇÁ·Î±×·¥ÀÌ »ç¿ëÇÒ ¸Ş´º ÁöÁ¤
-		wc.lpszClassName = Title.c_str();					//À©µµ¿ì Å¬·¡½º ÀÌ¸§
+		wc.hInstance = hInstance;							// ì‘ìš© í”„ë¡œê·¸ë¨ ì¸ìŠ¤í„´ìŠ¤
+		wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);			// ìµœì†Œí™” ë˜ì—ˆì„ë•Œ ì¶œë ¥ë  ì•„ì´ì½˜
+		wc.hCursor = LoadCursor(NULL, IDC_ARROW);			// ì‚¬ìš©í•  ë§ˆìš°ìŠ¤ ì»¤ì„œ
+		wc.hbrBackground = static_cast<HBRUSH>(WHITE_BRUSH);// ë°°ê²½ìƒ‰ìƒ ë¸ŒëŸ¬ì‹œ ì§€ì •
+		wc.lpszMenuName = NULL;								// í”„ë¡œê·¸ë¨ì´ ì‚¬ìš©í•  ë©”ë‰´ ì§€ì •
+		wc.lpszClassName = Title.c_str();					//ìœˆë„ìš° í´ë˜ìŠ¤ ì´ë¦„
 		wc.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
 
 		WORD check = RegisterClassEx(&wc);
@@ -55,19 +55,19 @@ void InitWindow(HINSTANCE hInstance, int nCmdShow) {
 	}
 	// Create Window & Show Window
 	{
-		Hwnd = CreateWindowEx(	// À©µµ¿ì »ı¼º
+		Hwnd = CreateWindowEx(	// ìœˆë„ìš° ìƒì„±
 			NULL,
-			Title.c_str(),		// Å¸ÀÌÆ² Å¬·¡½º ÀÌ¸§
-			Title.c_str(),		// Å¸ÀÌÆ² ¹Ù ÀÌ¸§
-			WS_OVERLAPPEDWINDOW,// À©µµ¿ì ½ºÅ¸ÀÏ
-			CW_USEDEFAULT,		// »ı¼ºµÉ ÁÂÇ¥ x
-			CW_USEDEFAULT,		// »ı¼ºµÉ ÁÂÇ¥ y
-			Width,				// ³Êºñ Å©±â
-			Height,				// ³ôÀÌ Å©±â
-			NULL,				// ¼ÒÀ¯ÁÖ ÇÚµé ÁöÁ¤
-			NULL,				// ¸Ş´ºÀÇ ÇÚµé ÁöÁ¤
-			hInstance,			// ÀÎ½ºÅÏ½º ÇÚµé ÁöÁ¤
-			NULL				// lParamÀ¸·Î Àü´ŞµÉ ±¸Á¶Ã¼ÀÇ Æ÷ÀÎÅÍ
+			Title.c_str(),		// íƒ€ì´í‹€ í´ë˜ìŠ¤ ì´ë¦„
+			Title.c_str(),		// íƒ€ì´í‹€ ë°” ì´ë¦„
+			WS_OVERLAPPEDWINDOW,// ìœˆë„ìš° ìŠ¤íƒ€ì¼
+			CW_USEDEFAULT,		// ìƒì„±ë  ì¢Œí‘œ x
+			CW_USEDEFAULT,		// ìƒì„±ë  ì¢Œí‘œ y
+			Width,				// ë„ˆë¹„ í¬ê¸°
+			Height,				// ë†’ì´ í¬ê¸°
+			NULL,				// ì†Œìœ ì£¼ í•¸ë“¤ ì§€ì •
+			NULL,				// ë©”ë‰´ì˜ í•¸ë“¤ ì§€ì •
+			hInstance,			// ì¸ìŠ¤í„´ìŠ¤ í•¸ë“¤ ì§€ì •
+			NULL				// lParamìœ¼ë¡œ ì „ë‹¬ë  êµ¬ì¡°ì²´ì˜ í¬ì¸í„°
 		);
 		assert(Hwnd != NULL);
 	}
@@ -78,26 +78,26 @@ void InitWindow(HINSTANCE hInstance, int nCmdShow) {
 
 void InitDirect3D(HINSTANCE hInstance) {
 	// SwapChain
-	DXGI_MODE_DESC bufferDesc;											// ÈÄ¸é¹öÆÛ ¼Ó¼º ±¸Á¶Ã¼
+	DXGI_MODE_DESC bufferDesc;											// í›„ë©´ë²„í¼ ì†ì„± êµ¬ì¡°ì²´
 	ZeroMemory(&bufferDesc, sizeof(DXGI_MODE_DESC));
 	bufferDesc.Width = Width;
 	bufferDesc.Height = Height;
-	bufferDesc.RefreshRate.Numerator = 60;								// È­¸é Àç»ı ºóµµ
+	bufferDesc.RefreshRate.Numerator = 60;								// í™”ë©´ ì¬ìƒ ë¹ˆë„
 	bufferDesc.RefreshRate.Denominator = 1;
 	bufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
-	bufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;	// µğ½ºÇÃ·¹ÀÌ ½ºÄµ¶óÀÎ ¸ğµå
-	bufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;						// ÇÈ¼¿ Çü½Ä(UNORM : 0~1»çÀÌÀÇ °ª)
+	bufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;	// ë””ìŠ¤í”Œë ˆì´ ìŠ¤ìº”ë¼ì¸ ëª¨ë“œ
+	bufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;						// í”½ì…€ í˜•ì‹(UNORM : 0~1ì‚¬ì´ì˜ ê°’)
 
 	DXGI_SWAP_CHAIN_DESC swapDesc;
 	ZeroMemory(&swapDesc, sizeof(DXGI_SWAP_CHAIN_DESC));
-	swapDesc.BufferCount = 1;								// ÈÄ¸é ¹öÆÛ °³¼ö
-	swapDesc.BufferDesc = bufferDesc;						// ÈÄ¸é ¹öÆÛ ¼Ó¼º
-	swapDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;	// ¹öÆÛÀÇ ¿ëµµ (Ç¥¸é, ÀÚ¿øÀ» Ãâ·Â ·»´õ Å¸°ÙÀ¸·Î ÁöÁ¤)
-	swapDesc.SampleDesc.Count = 1;							// ¸ÖÆ¼ »ùÇÃ¸µÀ» À§ÇØ ÃßÃâÇÒ Ç¥º»ÀÇ °³¼ö¿Í Ç°Áú ¼öÁØ
+	swapDesc.BufferCount = 1;								// í›„ë©´ ë²„í¼ ê°œìˆ˜
+	swapDesc.BufferDesc = bufferDesc;						// í›„ë©´ ë²„í¼ ì†ì„±
+	swapDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;	// ë²„í¼ì˜ ìš©ë„ (í‘œë©´, ìì›ì„ ì¶œë ¥ ë Œë” íƒ€ê²Ÿìœ¼ë¡œ ì§€ì •)
+	swapDesc.SampleDesc.Count = 1;							// ë©€í‹° ìƒ˜í”Œë§ì„ ìœ„í•´ ì¶”ì¶œí•  í‘œë³¸ì˜ ê°œìˆ˜ì™€ í’ˆì§ˆ ìˆ˜ì¤€
 	swapDesc.SampleDesc.Quality = 0;
-	swapDesc.OutputWindow = Hwnd;							// ·»´õ¸µ °á°ú¸¦ Ãâ·ÂÇÒ À©µµ¿ì
+	swapDesc.OutputWindow = Hwnd;							// ë Œë”ë§ ê²°ê³¼ë¥¼ ì¶œë ¥í•  ìœˆë„ìš°
 	swapDesc.Windowed = TRUE;
-	swapDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;			// ÀÌÀü¿¡ ±×·È´ø °Í Æó±â
+	swapDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;			// ì´ì „ì— ê·¸ë ¸ë˜ ê²ƒ íê¸°
 
 	// Featured Level
 	vector<D3D_FEATURE_LEVEL> featured_level =
@@ -116,7 +116,7 @@ void InitDirect3D(HINSTANCE hInstance) {
 		NULL,
 		D3D_DRIVER_TYPE_HARDWARE,
 		NULL,
-		D3D11_CREATE_DEVICE_BGRA_SUPPORT,	// 2D¶û º´ÇàÇÒ¶§ ¾²´Â ÇÃ·¡±×
+		D3D11_CREATE_DEVICE_BGRA_SUPPORT,	// 2Dë‘ ë³‘í–‰í• ë•Œ ì“°ëŠ” í”Œë˜ê·¸
 		featured_level.data(),
 		featured_level.size(),
 		D3D11_SDK_VERSION,
@@ -159,11 +159,11 @@ WPARAM Running() {
 	InitScene();
 
 	while (true) {
-		// ¸Ş¼¼Áö°¡ µé¾î¿Í ÀÖ´ÂÁö °Ë»ç ÈÄ ¸®ÅÏ
+		// ë©”ì„¸ì§€ê°€ ë“¤ì–´ì™€ ìˆëŠ”ì§€ ê²€ì‚¬ í›„ ë¦¬í„´
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
 			if (msg.message == WM_QUIT) break;
-			TranslateMessage(&msg);	// ÇØ¼®
-			DispatchMessage(&msg);	// º¸°í
+			TranslateMessage(&msg);	// í•´ì„
+			DispatchMessage(&msg);	// ë³´ê³ 
 		}
 		else {
 			Time::Get()->Update();
@@ -230,26 +230,26 @@ void CreateBackBuffer() {
 	//Get BackBuffer
 	ID3D11Texture2D* BackBuffer;
 	HRESULT hr = SwapChain->GetBuffer(
-		0,							// ¹é¹öÆÛÀÇ ¹øÈ£
-		__uuidof(ID3D11Texture2D),	// ¹é¹öÆÛ¿¡ Á¢±ÙÇÏ´Â ÀÎÅÍÆäÀÌ½º
-		(void**)&BackBuffer			// ¹é¹öÆÛ¸¦ ¹Ş¾Æ¿Ã º¯¼ö
+		0,							// ë°±ë²„í¼ì˜ ë²ˆí˜¸
+		__uuidof(ID3D11Texture2D),	// ë°±ë²„í¼ì— ì ‘ê·¼í•˜ëŠ” ì¸í„°í˜ì´ìŠ¤
+		(void**)&BackBuffer			// ë°±ë²„í¼ë¥¼ ë°›ì•„ì˜¬ ë³€ìˆ˜
 	);	
 	assert(SUCCEEDED(hr));
 
 	//Create RTV
 	hr = Device->CreateRenderTargetView(
-		BackBuffer,	// ºä¿¡¼­ ¿¢¼¼½ºÇÏ´Â ¸®¼Ò½º
-		NULL,		// ·»´õ Å¸°Ù ºä Á¤ÀÇ
-		&RTV		// ·»´õ Å¸°Ù ºä¸¦ ¹Ş¾Æ¿Ã º¯¼ö
+		BackBuffer,	// ë·°ì—ì„œ ì—‘ì„¸ìŠ¤í•˜ëŠ” ë¦¬ì†ŒìŠ¤
+		NULL,		// ë Œë” íƒ€ê²Ÿ ë·° ì •ì˜
+		&RTV		// ë Œë” íƒ€ê²Ÿ ë·°ë¥¼ ë°›ì•„ì˜¬ ë³€ìˆ˜
 	);
 	assert(SUCCEEDED(hr));
 	SAFE_RELEASE(BackBuffer);
 
 	//OM Set
 	DeviceContext->OMSetRenderTargets(
-		1,		// ·»´õ Å¸°ÙÀÇ ¼ö
-		&RTV,	// ·»´õ Å¸°Ù ºäÀÇ ¹è¿­
-		NULL	// ±íÀÌ/½ºÅÙ½Ç ¹öÆÛ
+		1,		// ë Œë” íƒ€ê²Ÿì˜ ìˆ˜
+		&RTV,	// ë Œë” íƒ€ê²Ÿ ë·°ì˜ ë°°ì—´
+		NULL	// ê¹Šì´/ìŠ¤í…ì‹¤ ë²„í¼
 	);
 
 	//Create Viewport

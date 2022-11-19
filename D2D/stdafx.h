@@ -108,12 +108,12 @@ extern HWND Hwnd;
 extern wstring Title;
 
 //DX Interface
-// DXGI(DirectX Graphic Infrastructure) ±×·¡ÇÈ½º¿¡ °ü·ÃÇÑ ±âÃÊÀûÀÎ ±â´É Á¦°ø
-// SwapChain ¹öÆÛ Æ÷ÀÎÅÍ°¡ ¼­·Î ±³Ã¼µÇ¸é¼­ È­¸éÀ» ±¸¼º
+// DXGI(DirectX Graphic Infrastructure) ê·¸ë˜í”½ìŠ¤ì— ê´€ë ¨í•œ ê¸°ì´ˆì ì¸ ê¸°ëŠ¥ ì œê³µ
+// SwapChain ë²„í¼ í¬ì¸í„°ê°€ ì„œë¡œ êµì²´ë˜ë©´ì„œ í™”ë©´ì„ êµ¬ì„±
 extern IDXGISwapChain* SwapChain;
-extern ID3D11Device* Device; // PC ÀÚ¿ø »ı¼º, CPU¿Í RAMÀÇ ¿µ¿ª ±â´É, Áö¿ø Á¡°Ë°ú ÀÚ¿ø ÇÒ´ç
+extern ID3D11Device* Device; // PC ìì› ìƒì„±, CPUì™€ RAMì˜ ì˜ì—­ ê¸°ëŠ¥, ì§€ì› ì ê²€ê³¼ ìì› í• ë‹¹
 extern ID3D11DeviceContext* DeviceContext;
-extern ID3D11RenderTargetView* RTV;	// ½ÇÁ¦ µµÈ­Áö RTV -> HDC ÀÇ ¿ªÇÒ
+extern ID3D11RenderTargetView* RTV;	// ì‹¤ì œ ë„í™”ì§€ RTV -> HDC ì˜ ì—­í• 
 
 extern Keyboard* Key;
 extern CMouse* Mouse;

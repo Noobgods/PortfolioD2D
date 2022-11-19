@@ -49,7 +49,7 @@ float4 PS(VertexOutput input) : SV_TARGET0
 //-----------------------------------------------------------------------------
 technique11 T0
 {
-    pass P0 // 0¹ø ÆÐ½º
+    pass P0
     {
         SetVertexShader(CompileShader(vs_5_0, VS()));
         SetPixelShader(CompileShader(ps_5_0, PS()));

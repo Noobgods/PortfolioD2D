@@ -26,8 +26,8 @@ private:
 	ID2D1Device* device;
 	static ID2D1DeviceContext* deviceContext;
 
-	static ID2D1Bitmap1* bitmap; // RTV¿¡ ÇØ´çÇÏ´Â °ø°£
-	static IDXGISurface* surface; // ¹é¹öÆÛ°¡ ±×·ÁÁú °ø°£
+	static ID2D1Bitmap1* bitmap; // RTVì— í•´ë‹¹í•˜ëŠ” ê³µê°„
+	static IDXGISurface* surface; // ë°±ë²„í¼ê°€ ê·¸ë ¤ì§ˆ ê³µê°„
 
 	static ID2D1SolidColorBrush* brush;
 	static IDWriteTextFormat* format;

@@ -45,7 +45,7 @@ void Rect::CreateBuffer()
 	}
 
 	//Indices
-	// ±×¸± Á¤Á¡ÀÇ ¹øÈ£
+	// ê·¸ë¦´ ì •ì ì˜ ë²ˆí˜¸
 	UINT indices[6] = { 0, 1, 2, 2, 1, 3 };
 
 	//Create VertexBuffer
@@ -112,7 +112,7 @@ void Rect::Render()
 
 	DeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	DeviceContext->IASetVertexBuffers(0, 1, &vertexBuffer, &stride, &offset);
-	// indexBuffer¸¦ ÅëÇØ¼­ ³Ñ±æ¶§ 4Byte (¿ì¸®°¡ ³Ñ±æ µ¥ÀÌÅÍ Å©±â)
+	// indexBufferë¥¼ í†µí•´ì„œ ë„˜ê¸¸ë•Œ 4Byte (ìš°ë¦¬ê°€ ë„˜ê¸¸ ë°ì´í„° í¬ê¸°)
 	DeviceContext->IASetIndexBuffer(indexBuffer, DXGI_FORMAT_R32_UINT, 0);
 
 	shader->DrawIndexed(0, 0, 6);

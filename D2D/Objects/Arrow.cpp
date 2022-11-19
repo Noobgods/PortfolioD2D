@@ -94,13 +94,13 @@ Arrow::~Arrow()
 
 void Arrow::Update(Matrix & V, Matrix & P)
 {
-	// ¹üÀ§ Á¦ÇÑ
+	// ë²”ìœ„ ì œí•œ
 	if (frameNumber >= LAUNCHER_ANGLE)
 		frameNumber = LAUNCHER_ANGLE;
 	if (frameNumber <= -LAUNCHER_ANGLE)
 		frameNumber = -LAUNCHER_ANGLE;
 
-	// °¢µµ Á¶Àý
+	// ê°ë„ ì¡°ì ˆ
 	if (frameNumber <= 0.0f) {
 		animation->RotationDegree(0, 180, 0);
 		animation->GetClip()->SetFrame(-frameNumber);

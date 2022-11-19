@@ -30,7 +30,7 @@ void Camera::Update()
 {
 	//View
 	Vector3 eye = Vector3(position.x, position.y, 0.0f);
-	Vector3 at(0, 0, 1);
+	Vector3 at = eye + Vector3(0, 0, 1);
 	Vector3 up(0, 1, 0);
-	D3DXMatrixLookAtLH(&view, &eye, &(eye + at), &up);
+	D3DXMatrixLookAtLH(&view, &eye, &at, &up);
 }

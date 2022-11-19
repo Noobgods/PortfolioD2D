@@ -29,8 +29,8 @@ private:
 	void MonsterDelete();
 
 private:
-	float fBubbleRotation;		// ¹öºí/¹ß»ç´ë È¸Àü°¢ 
-	float fRotationSpeed;		// È¸Àü¼Óµµ
+	float fBubbleRotation;		// ë²„ë¸”/ë°œì‚¬ëŒ€ íšŒì „ê° 
+	float fRotationSpeed;		// íšŒì „ì†ë„
 	float fStageTime;
 	float fCeilingY;
 

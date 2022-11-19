@@ -2,25 +2,25 @@
 #include "String.h"
 
 //////////////////////////////////////////////////////////////////////////
-///@brief ¹®ÀÚ¿­ ÀÚ¸£±â
-///@param orgin : ¿øº» ¹®ÀÚ¿­
-///@param tok : ÀÚ¸¦ ±âÁØÀÌ µÇ´Â ¹®ÀÚ¿­
-///@return ¿Ï·áµÈ ¹®ÀÚ¿­ ¹è¿­
+///@brief ë¬¸ìì—´ ìë¥´ê¸°
+///@param orgin : ì›ë³¸ ë¬¸ìì—´
+///@param tok : ìë¥¼ ê¸°ì¤€ì´ ë˜ëŠ” ë¬¸ìì—´
+///@return ì™„ë£Œëœ ë¬¸ìì—´ ë°°ì—´
 //////////////////////////////////////////////////////////////////////////
 void String::SplitString(vector<string>* result, string origin, string tok)
 {
 	result->clear();
 
-	int cutAt = 0; //ÀÚ¸¦ À§Ä¡s
+	int cutAt = 0; //ìë¥¼ ìœ„ì¹˜s
 	while ((cutAt = (int)origin.find_first_of(tok)) != origin.npos)
 	{
-		if (cutAt > 0) //ÀÚ¸£´Â À§Ä¡°¡ 0º¸´ÙÅ©¸é
+		if (cutAt > 0) //ìë¥´ëŠ” ìœ„ì¹˜ê°€ 0ë³´ë‹¤í¬ë©´
 			result->push_back(origin.substr(0, cutAt));
 
 		origin = origin.substr(cutAt + 1);
 	}
 
-	if (origin.length() > 0) //ÀÚ¸£°íµµ ³²Àº °ÍÀÌ ÀÖ´Ù¸é
+	if (origin.length() > 0) //ìë¥´ê³ ë„ ë‚¨ì€ ê²ƒì´ ìˆë‹¤ë©´
 		result->push_back(origin.substr(0, cutAt));
 }
 
@@ -28,24 +28,24 @@ void String::SplitString(vector<wstring>* result, wstring origin, wstring tok)
 {
 	result->clear();
 
-	int cutAt = 0; //ÀÚ¸¦ À§Ä¡s
+	int cutAt = 0; //ìë¥¼ ìœ„ì¹˜s
 	while ((cutAt = (int)origin.find_first_of(tok)) != origin.npos)
 	{
-		if (cutAt > 0) //ÀÚ¸£´Â À§Ä¡°¡ 0º¸´ÙÅ©¸é
+		if (cutAt > 0) //ìë¥´ëŠ” ìœ„ì¹˜ê°€ 0ë³´ë‹¤í¬ë©´
 			result->push_back(origin.substr(0, cutAt));
 
 		origin = origin.substr(cutAt + 1);
 	}
 
-	if (origin.length() > 0) //ÀÚ¸£°íµµ ³²Àº °ÍÀÌ ÀÖ´Ù¸é
+	if (origin.length() > 0) //ìë¥´ê³ ë„ ë‚¨ì€ ê²ƒì´ ìˆë‹¤ë©´
 		result->push_back(origin.substr(0, cutAt));
 }
 
 
 //////////////////////////////////////////////////////////////////////////
-///@brief ½ÃÀÛ ¹®ÀÚ¿­ÀÌ °°ÀºÁö Ã¼Å©
-///@param str : Ã¼Å©ÇÏ·Á´Â ¹®ÀÚ¿­
-///@param comp : ½ÃÀÛ ºñ±³¹®ÀÚ¿­
+///@brief ì‹œì‘ ë¬¸ìì—´ì´ ê°™ì€ì§€ ì²´í¬
+///@param str : ì²´í¬í•˜ë ¤ëŠ” ë¬¸ìì—´
+///@param comp : ì‹œì‘ ë¹„êµë¬¸ìì—´
 //////////////////////////////////////////////////////////////////////////
 bool String::StartsWith(string str, string comp)
 {
@@ -66,9 +66,9 @@ bool String::StartsWith(wstring str, wstring comp)
 }
 
 //////////////////////////////////////////////////////////////////////////
-///@brief ÇØ´ç ¹®ÀÚ¿­ÀÌ Æ÷ÇÔµÇ¾î ÀÖ´ÂÁö
-///@param str : Ã¼Å©ÇÏ·Á´Â ¹®ÀÚ¿­
-///@param comp : ºñ±³¹®ÀÚ¿­
+///@brief í•´ë‹¹ ë¬¸ìì—´ì´ í¬í•¨ë˜ì–´ ìˆëŠ”ì§€
+///@param str : ì²´í¬í•˜ë ¤ëŠ” ë¬¸ìì—´
+///@param comp : ë¹„êµë¬¸ìì—´
 //////////////////////////////////////////////////////////////////////////
 bool String::Contain(string str, string comp)
 {
@@ -86,10 +86,10 @@ bool String::Contain(wstring str, wstring comp)
 
 
 //////////////////////////////////////////////////////////////////////////
-///@brief ÇØ´ç ¹®ÀÚ¿­¿¡¼­ comp ¹®ÀÚ¸¦ rep·Î º¯°æ
-///@param str : Ã¼Å©ÇÏ·Á´Â ¹®ÀÚ¿­
-///@param comp : ºñ±³¹®ÀÚ¿­
-///@param rep : ¹Ù²Ü¹®ÀÚ¿­
+///@brief í•´ë‹¹ ë¬¸ìì—´ì—ì„œ comp ë¬¸ìë¥¼ repë¡œ ë³€ê²½
+///@param str : ì²´í¬í•˜ë ¤ëŠ” ë¬¸ìì—´
+///@param comp : ë¹„êµë¬¸ìì—´
+///@param rep : ë°”ê¿€ë¬¸ìì—´
 //////////////////////////////////////////////////////////////////////////
 void String::Replace(string * str, string comp, string rep)
 {
@@ -120,9 +120,9 @@ void String::Replace(wstring* str, wstring comp, wstring rep)
 }
 
 //////////////////////////////////////////////////////////////////////////
-///@brief stringÇüÀ» wstringÇüÀ¸·Î º¯°æ
-///@param value : º¯È¯ÇÒ ¹®ÀÚ¿­
-///@return º¯È¯ ¿Ï·á ¹®ÀÚ¿­
+///@brief stringí˜•ì„ wstringí˜•ìœ¼ë¡œ ë³€ê²½
+///@param value : ë³€í™˜í•  ë¬¸ìì—´
+///@return ë³€í™˜ ì™„ë£Œ ë¬¸ìì—´
 //////////////////////////////////////////////////////////////////////////
 wstring String::ToWString(string value)
 {
@@ -133,9 +133,9 @@ wstring String::ToWString(string value)
 }
 
 //////////////////////////////////////////////////////////////////////////
-///@brief wstringÇüÀ» stringÇüÀ¸·Î º¯°æ
-///@param value : º¯È¯ÇÒ ¹®ÀÚ¿­
-///@return º¯È¯ ¿Ï·á ¹®ÀÚ¿­
+///@brief wstringí˜•ì„ stringí˜•ìœ¼ë¡œ ë³€ê²½
+///@param value : ë³€í™˜í•  ë¬¸ìì—´
+///@return ë³€í™˜ ì™„ë£Œ ë¬¸ìì—´
 //////////////////////////////////////////////////////////////////////////
 string String::ToString(wstring value)
 {

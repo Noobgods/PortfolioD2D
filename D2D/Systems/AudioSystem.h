@@ -6,7 +6,7 @@ public:
 	AudioSystem();
 	~AudioSystem();
 
-	// ¿ÜºÎ¿¡¼­ À½¿øÀ» Ãß°¡ (ÀÌ¸§, »ç¿îµå ÆÄÀÏ °æ·Î, ·çÇÁ)
+	// ì™¸ë¶€ì—ì„œ ìŒì›ì„ ì¶”ê°€ (ì´ë¦„, ì‚¬ìš´ë“œ íŒŒì¼ ê²½ë¡œ, ë£¨í”„)
 	void AddSound(string name, string soundFile, bool bLoop = false);
 	void Play(string name, float volume = 1.0f);
 	void Stop(string name);
@@ -23,12 +23,12 @@ public:
 
 private:
 	System* system;
-	Sound** sound;	// À½¿ø
-	Channel** channel;	// Ã¤³Î
+	Sound** sound;	// ìŒì›
+	Channel** channel;	// ì±„ë„
 
-	UINT buffer;	// µ¿½Ã¿¡ Àç»ıµÇ´Â °¹¼ö
+	UINT buffer;	// ë™ì‹œì— ì¬ìƒë˜ëŠ” ê°¯ìˆ˜
 
-	// ÀÌ¸§ , ¹Ìµğ
+	// ì´ë¦„ , ë¯¸ë””
 	map<string, Sound**> sounds;
 	map<string, Sound**>::iterator iter;
 

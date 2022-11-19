@@ -136,7 +136,7 @@ void Path::OpenFileDialog(wstring file, const WCHAR* filter, wstring folder, fun
 	wstring tempFolder = folder;
 	String::Replace(&tempFolder, L"/", L"\\");
 
-	LPWSTR str = const_cast<LPWSTR>(L"ºÒ·¯¿À±â");
+	LPWSTR str = const_cast<LPWSTR>(L"ë¶ˆëŸ¬ì˜¤ê¸°");
 
 	OPENFILENAME ofn;
 	ZeroMemory(&ofn, sizeof(OPENFILENAME));
@@ -166,7 +166,7 @@ void Path::SaveFileDialog(wstring file, const WCHAR* filter, wstring folder, fun
 	WCHAR name[255];
 	wcscpy_s(name, file.c_str());
 
-	LPWSTR str = const_cast<LPWSTR>(L"ÀúÀåÇÏ±â");
+	LPWSTR str = const_cast<LPWSTR>(L"ì €ìž¥í•˜ê¸°");
 
 	wstring tempFolder = folder;
 	String::Replace(&tempFolder, L"/", L"\\");

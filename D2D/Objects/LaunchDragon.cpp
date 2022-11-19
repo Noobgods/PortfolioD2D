@@ -90,7 +90,7 @@ void LaunchDragon::Update(Matrix & V, Matrix & P)
 {
 	Vector2 position = animation->Position();
 	// Animation
-	/// °ø½î°í °ø³ª¸£±â
+	/// ê³µì˜ê³  ê³µë‚˜ë¥´ê¸°
 	switch (state) {
 	case LDState::IDLE: {
 		position = defaultPosition;

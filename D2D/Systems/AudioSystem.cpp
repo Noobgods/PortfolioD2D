@@ -4,10 +4,10 @@
 AudioSystem::AudioSystem()
 	: buffer(15), volume(1.0f)
 {
-	//½Ã½ºÅÛ »ý¼º
+	//ì‹œìŠ¤í…œ ìƒì„±
 	System_Create(&system);
 
-	// ½Ã½ºÅÛ ¸®¼Ò½º ¹× »ç¿îµå, Ã¤³Î »ý¼º ÃÊ±âÈ­
+	// ì‹œìŠ¤í…œ ë¦¬ì†ŒìŠ¤ ë° ì‚¬ìš´ë“œ, ì±„ë„ ìƒì„± ì´ˆê¸°í™”
 	system->init(buffer, FMOD_INIT_NORMAL, NULL);
 	sound = new Sound*[buffer];
 	channel = new Channel*[buffer];
@@ -70,8 +70,8 @@ void AudioSystem::Play(string name, float volume)
 	iter = sounds.begin();
 	for (iter; iter != sounds.end(); ++iter, count++) {
 		if (name == iter->first) {
-			// ºñ¾îÀÖ´Â Ã¤³Î, ¼ø¼­´ë·Î ³Ö´Â´Ù
-			system->playSound(FMOD_CHANNEL_FREE, *iter->second, false, &channel[count]);
+			// ë¹„ì–´ìžˆëŠ” ì±„ë„, ìˆœì„œëŒ€ë¡œ ë„£ëŠ”ë‹¤
+			system->playSound(FMOD_CHANNEL_FREE, * iter->second, false, & channel[count]);
 
 			channel[count]->setVolume(volume);
 		}

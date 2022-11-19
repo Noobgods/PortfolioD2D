@@ -19,15 +19,15 @@ Bubble::Bubble(Vector2 position, Vector2 scale, UINT color)
 
 	Clip* clip;
 	switch (color) {
-		// ÆÄ¶õ»ö
+		// íŒŒëž€ìƒ‰
 		case 1:{
-			/// ÆÄ¶õ»ö Idle
+			/// íŒŒëž€ìƒ‰ Idle
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 18, 1854, 34, 1870), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// ÆÄ¶õ»ö blink
+			/// íŒŒëž€ìƒ‰ blink
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 69, 1854, 85, 1870), animationSpeed);
@@ -39,14 +39,14 @@ Bubble::Bubble(Vector2 position, Vector2 scale, UINT color)
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 18, 1854, 34, 1870), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// ÆÄ¶õ»ö boring
+			/// íŒŒëž€ìƒ‰ boring
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 35, 1854, 51, 1870), animationSpeed);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 52, 1854, 68, 1870), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// ÆÄ¶õ»ö explode
+			/// íŒŒëž€ìƒ‰ explode
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 171, 1846, 203, 1878), animationSpeed);
@@ -58,22 +58,22 @@ Bubble::Bubble(Vector2 position, Vector2 scale, UINT color)
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 369, 1846, 401, 1878), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// ÆÄ¶õ»ö GAMEOVER
+			/// íŒŒëž€ìƒ‰ GAMEOVER
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 18, 1978, 34, 1994), animationSpeed);
 				animation->AddClip(clip);
 			}
 		}break;
-		// ³ë¶õ»ö
+		// ë…¸ëž€ìƒ‰
 		case 2: {
-			/// ³ë¶õ»ö Idle
+			/// ë…¸ëž€ìƒ‰ Idle
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 572, 1854, 588, 1870), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// ³ë¶õ»ö blink
+			/// ë…¸ëž€ìƒ‰ blink
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 623, 1854, 639, 1870), animationSpeed);
@@ -85,14 +85,14 @@ Bubble::Bubble(Vector2 position, Vector2 scale, UINT color)
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 572, 1854, 588, 1870), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// ³ë¶õ»ö boring
+			/// ë…¸ëž€ìƒ‰ boring
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 589, 1854, 605, 1870), animationSpeed);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 606, 1854, 622, 1870), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// ³ë¶õ»ö explode
+			/// ë…¸ëž€ìƒ‰ explode
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 725, 1846, 757, 1878), animationSpeed);
@@ -104,22 +104,22 @@ Bubble::Bubble(Vector2 position, Vector2 scale, UINT color)
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 923, 1846, 955, 1878), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// ³ë¶õ»ö GAMEOVER
+			/// ë…¸ëž€ìƒ‰ GAMEOVER
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 205, 1978, 221, 1994), animationSpeed);
 				animation->AddClip(clip);
 			}
 		}break;
-		// »¡°£»ö
+		// ë¹¨ê°„ìƒ‰
 		case 3: {
-			/// »¡°£»ö Idle
+			/// ë¹¨ê°„ìƒ‰ Idle
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 1, 1887, 17, 1903), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// »¡°£»ö blink
+			/// ë¹¨ê°„ìƒ‰ blink
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 69, 1887, 85, 1903), animationSpeed);
@@ -131,12 +131,12 @@ Bubble::Bubble(Vector2 position, Vector2 scale, UINT color)
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 1, 1887, 17, 1903), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// »¡°£»ö boring
+			/// ë¹¨ê°„ìƒ‰ boring
 			{
 				clip = new Clip(PlayMode::End);
 				animation->AddClip(clip);
 			}
-			/// »¡°£»ö explode
+			/// ë¹¨ê°„ìƒ‰ explode
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 171, 1879, 203, 1911), animationSpeed);
@@ -148,22 +148,22 @@ Bubble::Bubble(Vector2 position, Vector2 scale, UINT color)
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 369, 1879, 401, 1911), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// »¡°£»ö GAMEOVER
+			/// ë¹¨ê°„ìƒ‰ GAMEOVER
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 392, 1978, 408, 1994), animationSpeed);
 				animation->AddClip(clip);
 			}
 		}break;
-		// ³ì»ö
+		// ë…¹ìƒ‰
 		case 4: {
-			/// ³ì»ö Idle
+			/// ë…¹ìƒ‰ Idle
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 572, 1887, 588, 1903), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// ³ì»ö blink
+			/// ë…¹ìƒ‰ blink
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 623, 1887, 639, 1903), animationSpeed);
@@ -175,14 +175,14 @@ Bubble::Bubble(Vector2 position, Vector2 scale, UINT color)
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 572, 1887, 588, 1903), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// ³ì»ö boring
+			/// ë…¹ìƒ‰ boring
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 589, 1887, 605, 1903), animationSpeed);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 606, 1887, 622, 1903), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// ³ì»ö explode
+			/// ë…¹ìƒ‰ explode
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 725, 1879, 757, 1911), animationSpeed);
@@ -194,22 +194,22 @@ Bubble::Bubble(Vector2 position, Vector2 scale, UINT color)
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 923, 1879, 955, 1911), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// ³ì»ö GAMEOVER
+			/// ë…¹ìƒ‰ GAMEOVER
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 579, 1978, 595, 1994), animationSpeed);
 				animation->AddClip(clip);
 			}
 		}break;
-		// º¸¶ó»ö
+		// ë³´ë¼ìƒ‰
 		case 5: {
-			/// º¸¶ó»ö Idle
+			/// ë³´ë¼ìƒ‰ Idle
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 18, 1920, 34, 1936), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// º¸¶ó»ö blink
+			/// ë³´ë¼ìƒ‰ blink
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile,69, 1920, 85, 1936), animationSpeed);
@@ -221,14 +221,14 @@ Bubble::Bubble(Vector2 position, Vector2 scale, UINT color)
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 18, 1920, 34, 1936), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// º¸¶ó»ö boring
+			/// ë³´ë¼ìƒ‰ boring
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 35, 1920, 51, 1936), animationSpeed);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 52, 1920, 68, 1936), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// º¸¶ó»ö explode
+			/// ë³´ë¼ìƒ‰ explode
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 171, 1912, 203, 1944), animationSpeed);
@@ -240,22 +240,22 @@ Bubble::Bubble(Vector2 position, Vector2 scale, UINT color)
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 369, 1912, 401, 1944), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// º¸¶ó»ö GAMEOVER
+			/// ë³´ë¼ìƒ‰ GAMEOVER
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 18, 1995, 34, 2011), animationSpeed);
 				animation->AddClip(clip);
 			}
 		}break;
-		// ÁÖÈ²»ö
+		// ì£¼í™©ìƒ‰
 		case 6: {
-			/// º¸¶ó»ö Idle
+			/// ë³´ë¼ìƒ‰ Idle
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 572, 1920, 588, 1936), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// º¸¶ó»ö blink
+			/// ë³´ë¼ìƒ‰ blink
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 623, 1920, 639, 1936), animationSpeed);
@@ -267,14 +267,14 @@ Bubble::Bubble(Vector2 position, Vector2 scale, UINT color)
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 572, 1920, 588, 1936), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// º¸¶ó»ö boring
+			/// ë³´ë¼ìƒ‰ boring
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 589, 1920, 605, 1936), animationSpeed);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 606, 1920, 622, 1936), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// º¸¶ó»ö explode
+			/// ë³´ë¼ìƒ‰ explode
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 725, 1912, 757, 1944), animationSpeed);
@@ -286,22 +286,22 @@ Bubble::Bubble(Vector2 position, Vector2 scale, UINT color)
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 923, 1912, 955, 1944), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// ÁÖÈ²»ö GAMEOVER
+			/// ì£¼í™©ìƒ‰ GAMEOVER
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 205, 1995, 221, 2011), animationSpeed);
 				animation->AddClip(clip);
 			}
 		}break;
-		// °ËÁ¤»ö
+		// ê²€ì •ìƒ‰
 		case 7: {
-			/// °ËÁ¤»ö Idle
+			/// ê²€ì •ìƒ‰ Idle
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 18, 1953, 34, 1969), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// °ËÁ¤»ö blink
+			/// ê²€ì •ìƒ‰ blink
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 69, 1953, 85, 1969), animationSpeed);
@@ -313,14 +313,14 @@ Bubble::Bubble(Vector2 position, Vector2 scale, UINT color)
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 18, 1953, 34, 1969), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// °ËÁ¤»ö boring
+			/// ê²€ì •ìƒ‰ boring
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 35, 1953, 51, 1969), animationSpeed);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 52, 1953, 68, 1969), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// °ËÁ¤»ö explode
+			/// ê²€ì •ìƒ‰ explode
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 171, 1945, 203, 1977), animationSpeed);
@@ -332,22 +332,22 @@ Bubble::Bubble(Vector2 position, Vector2 scale, UINT color)
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 369, 1945, 401, 1977), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// °ËÁ¤»ö GAMEOVER
+			/// ê²€ì •ìƒ‰ GAMEOVER
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 392, 1995, 408, 2011), animationSpeed);
 				animation->AddClip(clip);
 			}
 		}break;
-		// Èò»ö
+		// í°ìƒ‰
 		case 8: {
-			/// Èò»ö Idle
+			/// í°ìƒ‰ Idle
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 572, 1953, 588, 1969), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// Èò»ö blink
+			/// í°ìƒ‰ blink
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 623, 1953, 639, 1969), animationSpeed);
@@ -359,14 +359,14 @@ Bubble::Bubble(Vector2 position, Vector2 scale, UINT color)
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 572, 1953, 588, 1969), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// Èò»ö boring
+			/// í°ìƒ‰ boring
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 589, 1953, 605, 1969), animationSpeed);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 606, 1953, 622, 1969), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// Èò»ö explode
+			/// í°ìƒ‰ explode
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 725, 1945, 757, 1977), animationSpeed);
@@ -378,7 +378,7 @@ Bubble::Bubble(Vector2 position, Vector2 scale, UINT color)
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 923, 1945, 955, 1977), animationSpeed);
 				animation->AddClip(clip);
 			}
-			/// Èò»ö GAMEOVER
+			/// í°ìƒ‰ GAMEOVER
 			{
 				clip = new Clip(PlayMode::End);
 				clip->AddFrame(new Sprite(spriteFile, shaderFile, 579, 1995, 595, 2011), animationSpeed);

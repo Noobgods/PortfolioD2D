@@ -7,10 +7,10 @@ S00_MainScene::S00_MainScene(SceneValues * values)
 	wstring spriteFile = L"./puzzleBubble.png";
 	wstring shaderFile = L"Effect.fx";
 
-	// ¸ÞÀÎ ¹è°æ 1, 10, 321, 234
+	// ë©”ì¸ ë°°ê²½ 1, 10, 321, 234
 	background = new Sprite(spriteFile, shaderFile, 1, 10, 321, 234);
 	background->Scale(4.0f, 4.0f);
-	// Å¸ÀÌÆ² ±Û¾¾ 595, 462, 787, 606
+	// íƒ€ì´í‹€ ê¸€ì”¨ 595, 462, 787, 606
 	mainTitle = new Sprite(spriteFile, shaderFile, 595, 462, 787, 606);
 	mainTitle->Scale(4.0f, 4.0f);
 	mainTitle->Position(mainTitle->Position().x, mainTitle->Position().y + 100);

@@ -24,20 +24,20 @@ private:
 	Time(void);
 	~Time(void);
 
-	static Time* instance;///< ½Ì±ÛÅæ °´Ã¼
+	static Time* instance;///< ì‹±ê¸€í†¤ ê°ì²´
 
-	static bool isTimerStopped;///< Å¸ÀÌ¸Ó ÁßÁö
-	static float timeElapsed;///< ÀÌÀü ÇÁ·¹ÀÓÀ¸·ÎºÎÅÍ °æ°ú½Ã°£
+	static bool isTimerStopped;///< íƒ€ì´ë¨¸ ì¤‘ì§€
+	static float timeElapsed;///< ì´ì „ í”„ë ˆìž„ìœ¼ë¡œë¶€í„° ê²½ê³¼ì‹œê°„
 
 
-	INT64 ticksPerSecond;///< ÃÊ´ç Æ½Ä«¿îÆ®
-	INT64 currentTime;///< ÇöÀç ½Ã°£
-	INT64 lastTime;///< ÀÌÀü½Ã°£
-	INT64 lastFPSUpdate;///< ¸¶Áö¸· FPS ¾÷µ¥ÀÌÆ® ½Ã°£
-	INT64 fpsUpdateInterval;///< fps ¾÷µ¥ÀÌÆ® °£°Ý
+	INT64 ticksPerSecond;///< ì´ˆë‹¹ í‹±ì¹´ìš´íŠ¸
+	INT64 currentTime;///< í˜„ìž¬ ì‹œê°„
+	INT64 lastTime;///< ì´ì „ì‹œê°„
+	INT64 lastFPSUpdate;///< ë§ˆì§€ë§‰ FPS ì—…ë°ì´íŠ¸ ì‹œê°„
+	INT64 fpsUpdateInterval;///< fps ì—…ë°ì´íŠ¸ ê°„ê²©
 
-	UINT frameCount;///< ÇÁ·¹ÀÓ ¼ö
-	float runningTime;///< ÁøÇà ½Ã°£
+	UINT frameCount;///< í”„ë ˆìž„ ìˆ˜
+	float runningTime;///< ì§„í–‰ ì‹œê°„
 	float framePerSecond;///< FPS
 };
 

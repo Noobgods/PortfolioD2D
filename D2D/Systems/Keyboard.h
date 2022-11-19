@@ -16,11 +16,11 @@ private:
 	bitset<KEYMAX> down;
 };
 
-// bitset ÇÔ¼ö
-// set(i) : ÀÎµ¦½ºÀÇ °ªÀ» true, false·Î ¼¼ÆÃ
-// reset() : ÀÎµ¦½ºÀÇ °ªÀ» false·Î ¼¼ÆÃ
-// flip() : false <-> true ·Î ÀüÈ¯
-// all() : ¸ğµç ¿ø¼Ò°ªÀÌ true¸é true ¹İÈ¯
-// none() : ¸ğµç ¿ø¼Ò°ªÀÌ false¸é false ¹İÈ¯
-// any() : 1°³¶óµµ true¸é true ¹İÈ¯
-// count() : trueÀÇ °³¼ö¸¦ ¸®ÅÏ
+// bitset í•¨ìˆ˜
+// set(i) : ì¸ë±ìŠ¤ì˜ ê°’ì„ true, falseë¡œ ì„¸íŒ…
+// reset() : ì¸ë±ìŠ¤ì˜ ê°’ì„ falseë¡œ ì„¸íŒ…
+// flip() : false <-> true ë¡œ ì „í™˜
+// all() : ëª¨ë“  ì›ì†Œê°’ì´ trueë©´ true ë°˜í™˜
+// none() : ëª¨ë“  ì›ì†Œê°’ì´ falseë©´ false ë°˜í™˜
+// any() : 1ê°œë¼ë„ trueë©´ true ë°˜í™˜
+// count() : trueì˜ ê°œìˆ˜ë¥¼ ë¦¬í„´

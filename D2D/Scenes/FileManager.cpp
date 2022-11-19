@@ -27,8 +27,8 @@ void FileManager::Save(wstring fileName)
 		SAFE_DELETE(w);
 
 		memset(stageBubbles, 0, sizeof(stageBubbles));
-		wstring temp = L"\n ÀúÀåÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.";
-		MessageBox(Hwnd, temp.c_str(), L"ÀúÀå¿Ï·á", MB_OK);
+		wstring temp = L"\n ì €ì¥ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.";
+		MessageBox(Hwnd, temp.c_str(), L"ì €ì¥ì™„ë£Œ", MB_OK);
 	}
 }
 

@@ -31,16 +31,16 @@ void Collider::CreateBuffer()
 	//Create VertexBuffer
 	{
 		D3D11_BUFFER_DESC desc;
-		ZeroMemory(&desc, sizeof(D3D11_BUFFER_DESC));	// NULL·Î ÃÊ±âÈ­
-		desc.Usage = D3D11_USAGE_DEFAULT;	// Á¢±Ù±ÇÇÑ DEFAULT(), DYNAMIC(CPU)
-		desc.ByteWidth = sizeof(Vertex) * 5;	// Å©±â
-		desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;	// »ç¿ë¿ëµµ
+		ZeroMemory(&desc, sizeof(D3D11_BUFFER_DESC));	// NULLë¡œ ì´ˆê¸°í™”
+		desc.Usage = D3D11_USAGE_DEFAULT;	// ì ‘ê·¼ê¶Œí•œ DEFAULT(), DYNAMIC(CPU)
+		desc.ByteWidth = sizeof(Vertex) * 5;	// í¬ê¸°
+		desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;	// ì‚¬ìš©ìš©ë„
 
 		D3D11_SUBRESOURCE_DATA data;
-		ZeroMemory(&data, sizeof(D3D11_SUBRESOURCE_DATA));	// NULL·Î ÃÊ±âÈ­
-		data.pSysMem = vertices;	// ½ÃÀÛ ÁÖ¼Ò
+		ZeroMemory(&data, sizeof(D3D11_SUBRESOURCE_DATA));	// NULLë¡œ ì´ˆê¸°í™”
+		data.pSysMem = vertices;	// ì‹œì‘ ì£¼ì†Œ
 
-		// description, ¼­ºê¸¯ ¼Ò½º, ¸¸µé °´Ã¼
+		// description, ì„œë¸Œë¦­ ì†ŒìŠ¤, ë§Œë“¤ ê°ì²´
 		HRESULT hr = Device->CreateBuffer(&desc, &data, &vertexBuffer);
 		assert(SUCCEEDED(hr));
 	}
@@ -70,7 +70,7 @@ void Collider::Update(D3DXMATRIX & V, D3DXMATRIX & P)
 void Collider::Render()
 {
 	UINT stride = sizeof(Vertex);
-	UINT offset = 0;	// ¸î¹ø ÀÎµ¦½ººÎÅÍ °¡Á®¿À´À³Ä
+	UINT offset = 0;	// ëª‡ë²ˆ ì¸ë±ìŠ¤ë¶€í„° ê°€ì ¸ì˜¤ëŠëƒ
 
 	// IA stage
 	DeviceContext->IASetVertexBuffers(0, 1, &vertexBuffer, &stride, &offset);
@@ -83,7 +83,7 @@ void Collider::Render()
 
 bool Collider::Aabb(D3DXMATRIX world, D3DXVECTOR2 position)
 {
-	// À§Ä¡ ÁÂÇ¥
+	// ìœ„ì¹˜ ì¢Œí‘œ
 	D3DXVECTOR2 position1 = D3DXVECTOR2(world._41, world._42);
 	D3DXVECTOR2 position2 = position;
 
@@ -103,7 +103,7 @@ bool Collider::Aabb(D3DXMATRIX world, D3DXVECTOR2 position)
 
 bool Collider::Aabb(D3DXMATRIX world1, D3DXMATRIX world2)
 {
-	// À§Ä¡ ÁÂÇ¥
+	// ìœ„ì¹˜ ì¢Œí‘œ
 	D3DXVECTOR2 position1 = D3DXVECTOR2(world1._41, world1._42);
 	D3DXVECTOR2 position2 = D3DXVECTOR2(world2._41, world2._42);
 
@@ -122,19 +122,19 @@ bool Collider::Aabb(D3DXMATRIX world1, D3DXMATRIX world2)
 }
 
 bool Collider::Cbb(D3DXMATRIX world1, D3DXMATRIX world2) {
-	// À§Ä¡ ÁÂÇ¥
+	// ìœ„ì¹˜ ì¢Œí‘œ
 	D3DXVECTOR2 A = D3DXVECTOR2(world1._41, world1._42);
 	D3DXVECTOR2 B = D3DXVECTOR2(world2._41, world2._42);
 
-	// µÎ Á¡ÀÇ °Å¸®
+	// ë‘ ì ì˜ ê±°ë¦¬
 	float distance = pow(A.x-B.x,2)+pow(A.y-B.y,2)/2;
 
-	// ¹İÁö¸§
+	// ë°˜ì§€ë¦„
 	float halfSize1, halfSize2;
 	halfSize1 = fabsf(world1._11) * 0.5f;
 	halfSize2 = fabsf(world2._11) * 0.5f;
 
-	// µÎ °Å¸®°¡ ¹İÁö¸§ÀÇ ÇÕº¸´Ù ÀÛ´Ù¸é
+	// ë‘ ê±°ë¦¬ê°€ ë°˜ì§€ë¦„ì˜ í•©ë³´ë‹¤ ì‘ë‹¤ë©´
 	if ( distance <= pow(halfSize1 + halfSize2, 2)) return true;
 	else return false;
 }

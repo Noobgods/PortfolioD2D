@@ -45,7 +45,7 @@ void Time::Update()
 {
 	if (isTimerStopped) return;
 
-	//1. ÇöÀç½Ã°£À» °¡Á®¿Í ½Ã°£ °£°İ ¹× ÁøÇà ½Ã°£À» °è»êÇÑ´Ù.
+	//1. í˜„ì¬ì‹œê°„ì„ ê°€ì ¸ì™€ ì‹œê°„ ê°„ê²© ë° ì§„í–‰ ì‹œê°„ì„ ê³„ì‚°í•œë‹¤.
 	QueryPerformanceCounter((LARGE_INTEGER *)&currentTime);
 	timeElapsed = (float)(currentTime - lastTime) / (float)ticksPerSecond;
 	runningTime += timeElapsed;

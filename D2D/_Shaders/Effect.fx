@@ -65,7 +65,6 @@ BlendState AlphaBlend
 
 RasterizerState Cull
 {
-	//Clip 과 Cull의 차이
 	//Clip -> 2D
 	//Cull -> 3D
 	Cullmode = None;

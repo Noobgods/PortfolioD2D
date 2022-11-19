@@ -58,31 +58,31 @@ void CMouse::Update()
 	}
 
 	// DoubleClick : begin
-	// GetTickCount() : ¿î¿µÃ¼Á¦¿¡¼­ Áö±İ±îÁö °æ°úÇÑ ½Ã°£À» ¾ò¾î¿È int¶ó¼­ »ç¿ë¾ÈÇÔ
+	// GetTickCount() : ìš´ì˜ì²´ì œì—ì„œ ì§€ê¸ˆê¹Œì§€ ê²½ê³¼í•œ ì‹œê°„ì„ ì–»ì–´ì˜´ intë¼ì„œ ì‚¬ìš©ì•ˆí•¨
 	UINT currentTime = GetTickCount();
 	for (UINT i = 0; i < 8; i++) {
 		if (buttonMap[i] == Button::Down) {
-			// ´õºí Å¬¸¯ ½ÇÆĞ (½Ã°£ ³» ¸ø ´©¸§)
+			// ë”ë¸” í´ë¦­ ì‹¤íŒ¨ (ì‹œê°„ ë‚´ ëª» ëˆ„ë¦„)
 			if (buttonCount[i] == 1) {
 				if (currentTime - startDoubleClickTime[i] >= doubleClickTime)
 					buttonCount[i] = 0;
 			}
 
 			buttonCount[i]++;
-			// ´õºíÅ¬¸¯ ´©¸£±â ½ÃÀÛ
+			// ë”ë¸”í´ë¦­ ëˆ„ë¥´ê¸° ì‹œì‘
 			if (buttonCount[i] == 1) {
 				startDoubleClickTime[i] = currentTime;
 			}
 		}
 
 		if (buttonMap[i] == Button::Up) {
-			// ´õºíÅ¬¸¯ ½ÇÆĞ (½Ã°£ ³» ¸ø ´©¸§)
+			// ë”ë¸”í´ë¦­ ì‹¤íŒ¨ (ì‹œê°„ ë‚´ ëª» ëˆ„ë¦„)
 			if (buttonCount[i] == 1) {
 				if (currentTime - startDoubleClickTime[i] >= doubleClickTime) {
 					buttonCount[i] = 0;
 				}
 			}
-			// ´õºí Å¬¸¯ ¼º°ø 
+			// ë”ë¸” í´ë¦­ ì„±ê³µ 
 			else if (buttonCount[i] == 2) {
 				if (currentTime - startDoubleClickTime[i] < doubleClickTime) {
 					buttonMap[i] = Button::DoubleClick;

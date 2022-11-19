@@ -39,7 +39,7 @@ DirectWrite::DirectWrite()
 	assert(SUCCEEDED(hr));
 
 	D2D1_FACTORY_OPTIONS option;
-	option.debugLevel = D2D1_DEBUG_LEVEL_WARNING; // ¿¡·¯°¡ ¹ß»ýÇÏ¸é ³Ñ¾î¿À´Â°Å
+	option.debugLevel = D2D1_DEBUG_LEVEL_WARNING; // ì—ëŸ¬ê°€ ë°œìƒí•˜ë©´ ë„˜ì–´ì˜¤ëŠ”ê±°
 	hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_MULTI_THREADED, &factory);
 	assert(SUCCEEDED(hr));
 
@@ -47,7 +47,7 @@ DirectWrite::DirectWrite()
 	hr = Device->QueryInterface(&dxgiDevice);
 	assert(SUCCEEDED(hr));
 
-	// device »ý¼º
+	// device ìƒì„±
 	hr = factory->CreateDevice(dxgiDevice, &device);
 	assert(SUCCEEDED(hr));
 
@@ -69,7 +69,7 @@ void DirectWrite::CreateBackBuffer()
 {
 	HRESULT hr;
 
-	// ¹é¹öÆÛ ¸¸µå´Â °Í 
+	// ë°±ë²„í¼ ë§Œë“œëŠ” ê²ƒ 
 	hr = SwapChain->GetBuffer(0, __uuidof(IDXGISurface), (void**)&surface);
 	assert(SUCCEEDED(hr));
 

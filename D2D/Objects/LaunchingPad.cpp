@@ -19,7 +19,7 @@ LaunchingPad::LaunchingPad(Vector2 position, Vector2 scale)
 	wstring shaderFile = L"Effect.fx";
 
 	Clip* clip;
-	// ¹ß»ç´ë
+	// ë°œì‚¬ëŒ€
 	{
 		clip = new Clip(PlayMode::Loop);
 		clip->AddFrame(new Sprite(spriteFile, shaderFile, 1, 1805, 65, 1845), animationSpeed);
@@ -42,7 +42,7 @@ LaunchingPad::LaunchingPad(Vector2 position, Vector2 scale)
 	animation_Pad->Play(0);
 	animation_Pad->Stop();
 
-	// ¹ß»ç´ë µ¹¸®´Â °Å
+	// ë°œì‚¬ëŒ€ ëŒë¦¬ëŠ” ê±°
 	{
 		clip = new Clip(PlayMode::Loop);
 		clip->AddFrame(new Sprite(spriteFile, shaderFile, 1041, 1812, 1057, 1828), animationSpeed);
@@ -62,7 +62,7 @@ LaunchingPad::LaunchingPad(Vector2 position, Vector2 scale)
 	animation_Turn->Play(0);
 	animation_Turn->Stop();
 
-	// µ¹¸®´Â °ø·æ
+	// ëŒë¦¬ëŠ” ê³µë£¡
 	// Idle
 	{
 		clip = new Clip(PlayMode::Loop);
@@ -130,13 +130,13 @@ void LaunchingPad::Update(Matrix & V, Matrix & P)
 {
 	Vector2 position = animation_SpinDragon->Position();
 
-	// ¹ß»ç´ë ¿òÁ÷ÀÓ
+	// ë°œì‚¬ëŒ€ ì›€ì§ì„
 	animation_Pad->GetClip()->SetFrame(frameNumber % 12);
 	animation_Pad->Update(V, P);
-	// µ¹¸®´Â°Å ¿òÁ÷ÀÓ
+	// ëŒë¦¬ëŠ”ê±° ì›€ì§ì„
 	animation_Turn->GetClip()->SetFrame(frameNumber % 8);
 	animation_Turn->Update(V, P);
-	// µ¹¸®´Â °ø·æ ¿òÁ÷ÀÓ
+	// ëŒë¦¬ëŠ” ê³µë£¡ ì›€ì§ì„
 	switch (spinState) {
 	case SDState::IDLE: {
 		position = defaultPosition;

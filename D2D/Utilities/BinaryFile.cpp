@@ -266,7 +266,7 @@ string BinaryReader::String()
 	UINT size = Int();
 
 	char* temp = new char[size + 1];
-	ReadFile(fileHandle, temp, sizeof(char) * size, &this->size, NULL); //╣╔юлем юп╠Б
+	ReadFile(fileHandle, temp, sizeof(char) * size, &this->size, NULL); //К█╟Л²╢М└╟ Л²╫Й╦╟
 	temp[size] = '\0';
 
 	return temp;

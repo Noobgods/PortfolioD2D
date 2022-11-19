@@ -10,7 +10,7 @@ S02_EditorScene::S02_EditorScene(SceneValues * values)
 {
 	background = new Background(Vector2(0, 0), Vector2(SCALE_X, SCALE_Y));
 	
-	// Collider Box À§Ä¡ ÃÊ±âÈ­
+	// Collider Box ìœ„ì¹˜ ì´ˆê¸°í™”
 	for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y; i++) {
 		Vector2 position = Vector2(-228.0f, 324.0f);
 		if (i % 2 == 1) position.x += BUBBLE_SIZE_X / 2;
@@ -22,7 +22,7 @@ S02_EditorScene::S02_EditorScene(SceneValues * values)
 		}
 	}
 	
-	// Collider Box ÃÊ±âÈ­
+	// Collider Box ì´ˆê¸°í™”
 	for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y-1; i++) {
 		for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
 			if (i % 2 == 1 && j == BUBBLE_LINE_SIZE_X - 1);
@@ -83,35 +83,35 @@ void S02_EditorScene::Render()
 				case 0:
 					bubbleBox[i][j]->Color(0, 0, 0, 0);
 					break;
-					//ÆÄ¶û
+					//íŒŒëž‘
 				case 1:
 					bubbleBox[i][j]->Color(0, 0.2, 0.9, 1);
 					break;
-					//³ë¶û
+					//ë…¸ëž‘
 				case 2:
 					bubbleBox[i][j]->Color(0.9, 0.8, 0, 1);
 					break;
-					//»¡°­
+					//ë¹¨ê°•
 				case 3:
 					bubbleBox[i][j]->Color(0.9, 0.1, 0, 1);
 					break;
-					//ÃÊ·Ï
+					//ì´ˆë¡
 				case 4:
 					bubbleBox[i][j]->Color(0.0, 0.7, 0, 1);
 					break;
-					//º¸¶ó
+					//ë³´ë¼
 				case 5:
 					bubbleBox[i][j]->Color(0.3, 0.1, 0.6, 1);
 					break;
-					//ÁÖÈ²
+					//ì£¼í™©
 				case 6:
 					bubbleBox[i][j]->Color(1, 0.5, 0.1, 1);
 					break;
-					//°ËÁ¤
+					//ê²€ì •
 				case 7:
 					bubbleBox[i][j]->Color(0.1, 0.1, 0.1, 1);
 					break;
-					//ÇÏ¾ç
+					//í•˜ì–‘
 				case 8:
 					bubbleBox[i][j]->Color(0.5, 0.5, 0.6, 1);
 					break;
@@ -130,14 +130,14 @@ void S02_EditorScene::EditBubble() {
 	if (ImGui::GetIO().WantCaptureMouse)
 		return;
 
-	// Å¬¸¯½Ã ¹öºí ¹èÄ¡
+	// í´ë¦­ì‹œ ë²„ë¸” ë°°ì¹˜
 	if (Mouse->Down(0)){
 		for (UINT i = 0; i < BUBBLE_LINE_SIZE_Y - 1; i++) {
 			for (UINT j = 0; j < BUBBLE_LINE_SIZE_X; j++) {
 				if (i % 2 == 1 && j == BUBBLE_LINE_SIZE_X - 1);
 				else {
 					if (Collider::Aabb(bubbleBox[i][j]->GetCollider()->World(), mouse)) {
-						// »ö¼³Á¤
+						// ìƒ‰ì„¤ì •
 						bubbles[i][j] = bubbleColor;
 					}
 				}
